@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)https://www.cnblogs.com/whycai/p/11655684.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    <meta property="og:description" content="背景： 使用vue增加了标签页，点击不同标签页传给后端的值不一样，用来做区分，如图： vue代码如下： 使用 form.PageA form.PageB ，后端接收到的值 first、second 1">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>vue 标签页以及标签页赋值 - 菜小鱼 - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="https://common.cnblogs.com/favicon.ico?v=20200522" type="image/x-icon">
+    
+    <link rel="stylesheet" href="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/blog-common.min.css">
+    <link id="MainCss" rel="stylesheet" href="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/bundle-red_autumnal_leaves.min.css">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/bundle-red_autumnal_leaves-mobile.min.css">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/whycai/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/whycai/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/whycai/wlwmanifest.xml">
+    <script async="" src="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/analytics.js"></script><script type="text/javascript" src="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/encoder.js"></script><script src="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/jquery-2.2.0.min.js"></script>
+    <script src="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/blog-common.min.js"></script>
+    <script>
+        var currentBlogId = 517344;
+        var currentBlogApp = 'whycai';
+        var cb_enable_mathjax = true;
+        var isLogined = false;
+        var skinName = 'red_autumnal_leaves';
+    </script>
+    <script type="text/x-mathjax-config;executed=true">
+        MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+        TeX: {
+        equationNumbers: { autoNumber: ['AMS'], useLabelIds: true },
+        extensions: ['extpfeil.js', 'mediawiki-texvc.js'],
+        Macros: {bm: "\\boldsymbol"}
+        },
+        'HTML-CSS': { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+        });
+    </script>
+    <script src="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/MathJax.js"></script>
+    
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><link rel="preload" href="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/f.txt" as="script"><script type="text/javascript" src="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/f.txt"></script><script src="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/pubads_impl_2020061202.js" async=""></script><link rel="prefetch" href="https://626358c52c5af9752466c26af035ed7e.safeframe.googlesyndication.com/safeframe/1-0-37/html/container.html"><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-37/html/container.html"></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+    <a name="top"></a>
+    
+    
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/whycai/"><img id="blogLogo" src="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/logo.gif" alt="返回主页"></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/whycai/">菜小鱼</a>
+</h1>
+<h2>
+一小步，一大步
+</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/whycai/">
+首页</a>
+</li>
+<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/%E8%8F%9C%E5%B0%8F%E9%B1%BC">
+联系</a></li>
+<li>
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/whycai/rss/">
+订阅</a>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			
+			<span id="stats_post_count">随笔 - 
+101&nbsp; </span>
+<span id="stats_article_count">文章 - 
+0&nbsp; </span>
+<span id="stats-comment_count">评论 - 
+1</span>
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    <!--done-->
+    <div id="topics">
+        <div class="post">
+            <h1 class="postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2 vertical-middle" href="https://www.cnblogs.com/whycai/p/11655684.html">
+    <span>vue 标签页以及标签页赋值</span>
+    
+
+
+</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                
+<div id="cnblogs_post_body" class="blogpost-body ">
+    <p>背景：</p>
+<p>使用vue增加了标签页，点击不同标签页传给后端的值不一样，用来做区分，如图：</p>
+<p><img src="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/1659284-20191011173517612-1402587623.png" alt=""></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>vue代码如下：</p>
+<p>使用 form.PageA&nbsp; &nbsp;form.PageB ，后端接收到的值 first、second&nbsp; 1、0</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">template</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 2</span>     <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 3</span>     <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">el-form </span><span style="color: #ff0000;">ref</span><span style="color: #0000ff;">="form"</span><span style="color: #ff0000;"> :model</span><span style="color: #0000ff;">="form"</span><span style="color: #ff0000;"> label-width</span><span style="color: #0000ff;">="80px"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 4</span>     <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">el-tabs </span><span style="color: #ff0000;">v-model</span><span style="color: #0000ff;">="form.PageA"</span><span style="color: #ff0000;"> type</span><span style="color: #0000ff;">="border-card"</span><span style="color: #ff0000;"> @tab-click</span><span style="color: #0000ff;">="handleClick"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 5</span> 
+<span style="color: #008080;"> 6</span>         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">el-tab-pane </span><span style="color: #ff0000;">label</span><span style="color: #0000ff;">="标签页1"</span><span style="color: #ff0000;"> name</span><span style="color: #0000ff;">="first"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 7</span>         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">el-tabs </span><span style="color: #ff0000;">v-model</span><span style="color: #0000ff;">="form.PageB"</span> <span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 8</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">el-tab-pane </span><span style="color: #ff0000;">label</span><span style="color: #0000ff;">="标签页a"</span><span style="color: #ff0000;"> name</span><span style="color: #0000ff;">="0"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 9</span>         <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">el-tab-pane</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">10</span> 
+<span style="color: #008080;">11</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">el-tab-pane </span><span style="color: #ff0000;">label</span><span style="color: #0000ff;">="标签页b"</span><span style="color: #ff0000;"> name</span><span style="color: #0000ff;">="1"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">12</span>         <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">el-tab-pane</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">13</span> 
+<span style="color: #008080;">14</span>             <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">el-tabs</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">15</span> 
+<span style="color: #008080;">16</span>         <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">el-tab-pane</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">17</span> 
+<span style="color: #008080;">18</span>       <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">el-tab-pane </span><span style="color: #ff0000;">label</span><span style="color: #0000ff;">="标签页2"</span><span style="color: #ff0000;"> name</span><span style="color: #0000ff;">="second"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">19</span> 
+<span style="color: #008080;">20</span> 
+<span style="color: #008080;">21</span>         <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">el-tab-pane</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">22</span>         <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">el-tabs</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">23</span> 
+<span style="color: #008080;">24</span> 
+<span style="color: #008080;">25</span>     <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">el-form</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">26</span> 
+<span style="color: #008080;">27</span> 
+<span style="color: #008080;">28</span>     <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">29</span> <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">template</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">30</span> 
+<span style="color: #008080;">31</span> 
+<span style="color: #008080;">32</span> 
+<span style="color: #008080;">33</span> 
+<span style="color: #008080;">34</span> <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">35</span> 
+<span style="color: #008080;">36</span> 
+<span style="color: #008080;">37</span> <span style="background-color: #f5f5f5; color: #000000;">export </span><span style="background-color: #f5f5f5; color: #0000ff;">default</span><span style="background-color: #f5f5f5; color: #000000;"> {
+</span><span style="color: #008080;">38</span> <span style="background-color: #f5f5f5; color: #000000;">  data() {
+</span><span style="color: #008080;">39</span>     <span style="background-color: #f5f5f5; color: #0000ff;">return</span><span style="background-color: #f5f5f5; color: #000000;"> {
+</span><span style="color: #008080;">40</span> 
+<span style="color: #008080;">41</span> <span style="background-color: #f5f5f5; color: #000000;">        form: {
+</span><span style="color: #008080;">42</span> <span style="background-color: #f5f5f5; color: #000000;">            PageA:</span><span style="background-color: #f5f5f5; color: #000000;">''</span><span style="background-color: #f5f5f5; color: #000000;">,
+</span><span style="color: #008080;">43</span> <span style="background-color: #f5f5f5; color: #000000;">            PageB:</span><span style="background-color: #f5f5f5; color: #000000;">''</span>
+<span style="color: #008080;">44</span> <span style="background-color: #f5f5f5; color: #000000;">        }
+</span><span style="color: #008080;">45</span> <span style="background-color: #f5f5f5; color: #000000;">    }
+</span><span style="color: #008080;">46</span> <span style="background-color: #f5f5f5; color: #000000;">  },
+</span><span style="color: #008080;">47</span> 
+<span style="color: #008080;">48</span> <span style="background-color: #f5f5f5; color: #000000;">methods: {
+</span><span style="color: #008080;">49</span> 
+<span style="color: #008080;">50</span> <span style="background-color: #f5f5f5; color: #000000;">      },
+</span><span style="color: #008080;">51</span> 
+<span style="color: #008080;">52</span> 
+<span style="color: #008080;">53</span> <span style="background-color: #f5f5f5; color: #000000;">}
+</span><span style="color: #008080;">54</span> <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block"><div id="BlogPostCategory">
+    分类: 
+            <a href="https://www.cnblogs.com/whycai/category/1538981.html" target="_blank">VUE</a></div>
+<div id="EntryTag">
+    标签: 
+            <a href="https://www.cnblogs.com/whycai/tag/vue/">vue</a></div>
+
+    <div id="blog_post_info">
+<div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(11655684,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+        <a id="green_channel_follow" onclick="follow(&#39;4c8fb681-1eee-40a8-f824-08d6bd63de79&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/whycai/" target="_blank"><img src="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/20190527093126.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/whycai/">菜小鱼</a><br>
+            <a href="https://home.cnblogs.com/u/whycai/followees/">关注 - 2</a><br>
+            <a href="https://home.cnblogs.com/u/whycai/followers/">粉丝 - 4</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;4c8fb681-1eee-40a8-f824-08d6bd63de79&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(11655684,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(11655684,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+    <div class="clear"></div>
+    <div id="post_next_prev">
+
+    <a href="https://www.cnblogs.com/whycai/p/11639690.html" class="p_n_p_prefix">« </a> 上一篇：    <a href="https://www.cnblogs.com/whycai/p/11639690.html" title="发布于 2019-10-09 09:38">python练习题（三）</a>
+    <br>
+    <a href="https://www.cnblogs.com/whycai/p/11694425.html" class="p_n_p_prefix">» </a> 下一篇：    <a href="https://www.cnblogs.com/whycai/p/11694425.html" title="发布于 2019-10-17 19:55">robot framework 笔记（一）</a>
+
+</div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2019-10-11 17:37</span>&nbsp;
+<a href="https://www.cnblogs.com/whycai/">菜小鱼</a>&nbsp;
+阅读(<span id="post_view_count">726</span>)&nbsp;
+评论(<span id="post_comment_count">0</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=11655684" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(11655684);return false;">收藏</a></div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+<script src="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/highlight.min.js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 517344, cb_blogApp = 'whycai', cb_blogUserGuid = '4c8fb681-1eee-40a8-f824-08d6bd63de79';
+    var cb_entryId = 11655684, cb_entryCreatedDate = '2019-10-11 17:37', cb_postType = 1; 
+    loadViewCount(cb_entryId);
+    loadSideColumnAd();
+</script><a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<script>
+    var commentManager = new blogCommentManager();
+    commentManager.renderComments(0);
+</script>
+
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/whycai/p/11655684.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/whycai/p/11655684.html#top">返回顶部</a></div>
+    <div id="comment_form_container" style="visibility: visible;"><div class="login_tips">
+    注册用户登录后才能发表评论，请 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a>
+     或 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，
+    <a href="https://www.cnblogs.com/">访问</a> 网站首页。
+</div></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"><a href="https://www.wenjuan.com/s/3uIjeq0/" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-博客园问卷调查&#39;)">【推荐】了解你才能更懂你，博客园首发问卷调查，助力社区新升级</a><br><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-ucancode&#39;)">【推荐】超50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://developer.aliyun.com/ask/272857?utm_content=g_1000104135" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-阿里云开发者社区&#39;)">【推荐】Java实战200例（附源码）-助你提升实战能力</a><br></div>
+    <div id="opt_under_post"></div>
+    <script async="async" src="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/gpt.js"></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+    <script>
+        var mobileVisit = screen.width < 500;
+        googletag.cmd.push(function () {
+            googletag.defineSlot("/1090369/C1", [300, 250], "div-gpt-ad-1546353474406-0").addService(googletag.pubads());
+            if (!mobileVisit) {
+                googletag.defineSlot("/1090369/C2", [468, 60], "div-gpt-ad-1539008685004-0").addService(googletag.pubads());
+            }
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+    <div id="cnblogs_c1" class="c_ad_block">
+        <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;" data-google-query-id="CMvGwsrWhuoCFUsbvQodrcAGGw"><div id="google_ads_iframe_/1090369/C1_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C1_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C1_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="1" sandbox="allow-forms allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" data-load-complete="true" src="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/saved_resource.html"></iframe></div></div>
+    </div>
+    <div id="under_post_news"><div class="recomm-block"><b>相关博文：</b><br>·  <a title="标签页" href="https://www.cnblogs.com/yaomengli/p/6700042.html" target="_blank" onclick="clickRecomItmem(6700042)">标签页</a><br>·  <a title="标签页" href="https://www.cnblogs.com/huanhuan55/p/9993440.html" target="_blank" onclick="clickRecomItmem(9993440)">标签页</a><br>·  <a title="vue-标签页组件" href="https://www.cnblogs.com/huangmin1992/p/10158559.html" target="_blank" onclick="clickRecomItmem(10158559)">vue-标签页组件</a><br>·  <a title="【vue】vue中实现标签页" href="https://www.cnblogs.com/daaasheng/p/10178316.html" target="_blank" onclick="clickRecomItmem(10178316)">【vue】vue中实现标签页</a><br>·  <a title="Tabs 标签页" href="https://www.cnblogs.com/grt322/p/8564444.html" target="_blank" onclick="clickRecomItmem(8564444)">Tabs 标签页</a><br>»  <a target="_blank" href="https://recomm.cnblogs.com/blogpost/11655684">更多推荐...</a></div></div>
+    <div id="cnblogs_c2" class="c_ad_block" style="display: none;">
+        <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;" data-google-query-id="CI2jwcrWhuoCFUsbvQodrcAGGw"><div id="google_ads_iframe_/1090369/C2_0__container__" style="border: 0pt none; width: 468px; height: 60px;"></div></div>
+    </div>
+    <div id="under_post_kb">
+<div class="itnews c_ad_block">
+    <b>最新 IT 新闻</b>:
+    <br>
+ ·              <a href="https://news.cnblogs.com/n/665277/" target="_blank">字节1000万挖走大V，B站为何左右为难？</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/665276/" target="_blank">未授权Switch变正品， 拼多多百亿补贴真靠谱吗？</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/665275/" target="_blank">巫师财经出B站记</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/665274/" target="_blank">卖力“演出”，买单者寥寥，李国庆却不能停</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/665273/" target="_blank">魅族没有老朋友，也没有新故事</a>
+            <br>
+    » <a href="https://news.cnblogs.com/" title="IT 新闻" target="_blank">更多新闻...</a>
+</div></div>
+    <div id="HistoryToday" class="c_ad_block"></div>
+    <script type="text/javascript">
+        fixPostBody();
+        deliverBigBanner();
+setTimeout(function() { incrementViewCount(cb_entryId); }, 50);        deliverAdT2();
+        deliverAdC1();
+        deliverAdC2();
+        loadNewsAndKb();
+        loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+        loadOptUnderPost();
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<div id="sidebar_news" class="newsItem"><!--done-->
+<h3 class="catListTitle">公告</h3>
+
+<div id="blog-news">
+    <div class="clockdiv"><canvas id="clock" width="180px" height="180px">您的浏览器不兼容canvas</canvas><div>
+<p>我的访客量统计：</p>
+              <p>Start From 2019.7.13</p>
+              <a href="https://info.flagcounter.com/w9vQ">
+<img src="./vue 标签页以及标签页赋值 - 菜小鱼 - 博客园_files/saved_resource" alt="Flag Counter" border="0">
+</a>
+
+
+
+
+<script type="text/javascript">window['__document_write_ajax_callbacks__']['3']();</script><script type="text/javascript">window['__document_write_ajax_callbacks__']['1']();</script>
+    <div id="profile_block">
+        昵称：
+        <a href="https://home.cnblogs.com/u/whycai/">
+            菜小鱼
+        </a>
+        <br>
+        园龄：
+        <a href="https://home.cnblogs.com/u/whycai/" title="入园时间：2019-04-11">
+            1年2个月
+        </a>
+        <br>
+        粉丝：
+        <a href="https://home.cnblogs.com/u/whycai/followers/">
+            4
+        </a>
+        <br>
+        关注：
+        <a href="https://home.cnblogs.com/u/whycai/followees/">
+            2
+        </a>
+        <div id="p_b_follow">
+<a href="javascript:void(0)" onclick="follow(&#39;4c8fb681-1eee-40a8-f824-08d6bd63de79&#39;)">+加关注</a></div>
+        <script type="text/javascript">window['__document_write_ajax_callbacks__']['4']();</script><script>window['__document_write_ajax_callbacks__']['2']();</script>
+    </div>
+</div>
+
+</div></div></div>
+
+<div id="sidebar_ad"></div>
+			<div id="blog-calendar" style="">
+
+<table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar" border="0">
+    <tbody>
+        <tr>
+            <td colspan="7">
+                <table class="CalTitle" cellspacing="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td class="CalNextPrev">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2020/05/16&#39;); return false;">&lt;</a>
+                            </td>
+                            <td align="center">2020年6月</td>
+                            <td align="right" class="CalNextPrev">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2020/07/16&#39;); return false;">&gt;</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+                    <th class="CalDayHeader" align="center" abbr="日" scope="col">日</th>
+                    <th class="CalDayHeader" align="center" abbr="一" scope="col">一</th>
+                    <th class="CalDayHeader" align="center" abbr="二" scope="col">二</th>
+                    <th class="CalDayHeader" align="center" abbr="三" scope="col">三</th>
+                    <th class="CalDayHeader" align="center" abbr="四" scope="col">四</th>
+                    <th class="CalDayHeader" align="center" abbr="五" scope="col">五</th>
+                    <th class="CalDayHeader" align="center" abbr="六" scope="col">六</th>
+        </tr>
+            <tr>
+                            <td class="CalOtherMonthDay" align="center">31</td>
+                        <td class="" align="center">
+                            1
+                        </td>
+                        <td class="" align="center">
+                            2
+                        </td>
+                        <td class="" align="center">
+                            3
+                        </td>
+                        <td class="" align="center">
+                            4
+                        </td>
+                        <td class="" align="center">
+                            5
+                        </td>
+                    <td class="CalWeekendDay" align="center">
+                        6
+                    </td>
+            </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            7
+                        </td>
+                            <td class="" align="center">
+                                8
+                            </td>
+                            <td class="" align="center">
+                                9
+                            </td>
+                            <td class="" align="center">
+                                10
+                            </td>
+                            <td class="" align="center">
+                                11
+                            </td>
+                            <td class="" align="center">
+                                <a href="https://www.cnblogs.com/whycai/archive/2020/06/12.html"><u>12</u></a>
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            <a href="https://www.cnblogs.com/whycai/archive/2020/06/13.html"><u>13</u></a>
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            14
+                        </td>
+                            <td class="" align="center">
+                                15
+                            </td>
+                            <td class="CalTodayDay" align="center">
+                                16
+                            </td>
+                            <td class="" align="center">
+                                17
+                            </td>
+                            <td class="" align="center">
+                                18
+                            </td>
+                            <td class="" align="center">
+                                19
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            20
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            21
+                        </td>
+                            <td class="" align="center">
+                                22
+                            </td>
+                            <td class="" align="center">
+                                23
+                            </td>
+                            <td class="" align="center">
+                                24
+                            </td>
+                            <td class="" align="center">
+                                25
+                            </td>
+                            <td class="" align="center">
+                                26
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            27
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            28
+                        </td>
+                            <td class="" align="center">
+                                29
+                            </td>
+                            <td class="" align="center">
+                                30
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                1
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                2
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                3
+                            </td>
+                        <td class="CalOtherMonthDay" align="center">
+                            4
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalOtherMonthDay" align="center">
+                            5
+                        </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                6
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                7
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                8
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                9
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                10
+                            </td>
+                        <td class="CalOtherMonthDay" align="center">
+                            11
+                        </td>
+                </tr>
+    </tbody>
+</table></div><script>loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn">
+<!-- 搜索 -->
+<div id="sidebar_search" class="sidebar-block">
+    <div id="sidebar_search" class="mySearch">
+        <h3 class="catListTitle">搜索</h3>
+        <div id="sidebar_search_box">
+            <div id="widget_my_zzk" class="div_my_zzk">
+                <input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk">
+            </div>
+            <div id="widget_my_google" class="div_my_zzk">
+                <input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 常用链接 -->
+<div id="sidebar_shortcut" class="sidebar-block">
+    <div class="catListLink">
+<h3 class="catListTitle">
+常用链接
+</h3>
+<ul>
+		<li>
+
+<a href="https://www.cnblogs.com/whycai/p/" title="我的博客的随笔列表">我的随笔</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/whycai/MyComments.html" title="我的发表过的评论列表">我的评论</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/whycai/OtherPosts.html" title="我评论过的随笔列表">我的参与</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/whycai/RecentComments.html" title="我的博客的评论列表">最新评论</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/whycai/tag/" title="我的博客的标签列表">我的标签</a>
+</li>
+
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div>
+
+
+</div>
+
+<!-- 最新随笔 -->
+<div id="sidebar_recentposts" class="sidebar-block">
+    <div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/whycai/p/13122401.html">1.Error:(5, 45) java: 程序包org.springframework.boot.test.context不存在  解决</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/whycai/p/13121286.html">2.The server time zone value '�й���׼ʱ��' is unrecognized or represents more than one time zone 问题解决</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/whycai/p/13121230.html">3.Error creating bean with name 'sqlSessionFactory' defined in class path resource 报错解决</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/whycai/p/13109965.html">4.win10 查看端口是否被占用以及杀进程</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/whycai/p/13099321.html">5.git 相关操作</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/whycai/p/13097644.html">6.IntelliJIdeaxxx\system\compile-server"): CreateProcess error=2, 系统找不到指定的文件。 报错解决</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/whycai/p/13020665.html">7.IntelliJ IDEA创建Spring Boot</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/whycai/p/13019263.html">8.org.mybatis.spring.transaction.SpringManagedTransaction.getTimeout()Ljava/lang/Integer;] with root cause 报错接错</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/whycai/p/13019189.html">9.org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)  报错解决</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/whycai/p/13018914.html">10. Cause: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 6; 不允许有匹配 "[xX][mM][lL]" 的处理指令目标。 报错解决</a>
+
+                </li>
+			
+
+</ul>
+</div>
+
+
+</div>
+
+
+<!-- 我的标签 -->
+<div id="sidebar_toptags" class="sidebar-block">
+    <div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+
+        <li>
+            <a href="https://www.cnblogs.com/whycai/tag/python/">python</a>(44)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/whycai/tag/robot%20framework/">robot framework</a>(15)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/whycai/tag/flask/">flask</a>(15)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/whycai/tag/vue/">vue</a>(14)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/whycai/tag/js/">js</a>(13)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/whycai/tag/html/">html</a>(11)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/whycai/tag/java/">java</a>(9)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/whycai/tag/linux/">linux</a>(6)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/whycai/tag/SQLAlchemy/">SQLAlchemy</a>(6)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/whycai/tag/%E5%B7%A5%E5%85%B7/">工具</a>(5)
+        </li>
+    <li>
+        <a href="https://www.cnblogs.com/whycai/tag/">更多</a>
+    </li>
+
+</ul>
+</div>
+
+
+</div>
+
+<!-- 积分与排名 -->
+<div id="sidebar_scorerank" class="sidebar-block">
+    <div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	
+40301
+	</li>
+	<li class="liRank">
+		排名 -	
+21122
+	</li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+<!-- 随笔分类、随笔档案、文章分类、新闻分类、相册、链接 -->
+<div id="sidebar_categories">
+    
+        <div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+            <h3 class="catListTitle">
+                
+
+随笔分类
+<span style="font-size:11px;font-weight:normal">(142)</span>
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/category/1536305.html" rel="" target="">
+    git(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/category/1513033.html" rel="" target="">
+    html(14)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/category/1766383.html" rel="" target="">
+    java(9)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/category/1652718.html" rel="" target="">
+    js(14)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/category/1543325.html" rel="" target="">
+    linux(6)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/category/1469689.html" rel="" target="">
+    python(53)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/category/1477324.html" rel="" target="">
+    robot framework(15)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/category/1651833.html" rel="" target="">
+    sql(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/category/1629852.html" rel="" target="">
+    SQLAlchemy(6)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/category/1538981.html" rel="" target="">
+    VUE(14)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/category/1578716.html" rel="" target="">
+    工具(6)
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+        <div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+            <h3 class="catListTitle">
+                
+
+随笔档案
+<span style="font-size:11px;font-weight:normal">(101)</span>
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/archive/2020/06.html" rel="" target="">
+    2020年6月(6)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/archive/2020/05.html" rel="" target="">
+    2020年5月(12)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/archive/2020/04.html" rel="" target="">
+    2020年4月(7)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/archive/2020/03.html" rel="" target="">
+    2020年3月(8)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/archive/2020/02.html" rel="" target="">
+    2020年2月(7)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/archive/2020/01.html" rel="" target="">
+    2020年1月(18)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/archive/2019/12.html" rel="" target="">
+    2019年12月(10)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/archive/2019/11.html" rel="" target="">
+    2019年11月(5)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/archive/2019/10.html" rel="" target="">
+    2019年10月(7)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/archive/2019/09.html" rel="" target="">
+    2019年9月(11)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/archive/2019/08.html" rel="" target="">
+    2019年8月(4)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/archive/2019/07.html" rel="" target="">
+    2019年7月(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/archive/2019/06.html" rel="" target="">
+    2019年6月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/whycai/archive/2019/05.html" rel="" target="">
+    2019年5月(2)
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+
+</div>
+
+<!-- 最新评论 -->
+<div id="sidebar_recentcomments" class="sidebar-block">
+    <div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div class="RecentCommentBlock">
+        <ul>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/whycai/p/10979705.html">1. Re:appium 使用name 定位报错 Locator Strategy 'name' is not supported for this session</a></li>
+                    <li class="recent_comment_body">并不能生效</li>
+                    <li class="recent_comment_author">--fayerer</li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+
+
+<!-- 阅读排行榜 -->
+<div id="sidebar_topviewedposts" class="sidebar-block">
+    <div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/whycai/p/11453687.html">
+                            1. el-input 只能输入数字并限制长度(5732)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/whycai/p/11424685.html">
+                            2. git 将master分支合到自己的开发分支(3453)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/whycai/p/11539715.html">
+                            3. vue 下拉框单选、多选以及默认值(3138)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/whycai/p/11772592.html">
+                            4. flask处理数据，页面实时刷新展示(3054)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/whycai/p/11469375.html">
+                            5. VUE this.$http.post 与后端flask 数据交互(2951)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 评论排行榜 -->
+<div id="sidebar_topcommentedposts" class="sidebar-block">
+    <div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/whycai/p/10979705.html">
+                            1. appium 使用name 定位报错 Locator Strategy 'name' is not supported for this session(1)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 推荐排行榜 -->
+<div id="sidebar_topdiggedposts" class="sidebar-block">
+    
+<div id="topdigg_posts_wrap">
+    <div class="catListView">
+        <h3 class="catListTitle">推荐排行榜</h3>
+        <div id="TopDiggPostsBlock">
+            <ul style="word-break: break-all">
+                        <li>
+                            <a href="https://www.cnblogs.com/whycai/p/11285000.html">
+                                1. python 实现定时任务(2)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/whycai/p/11772592.html">
+                                2. flask处理数据，页面实时刷新展示(1)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/whycai/p/12422029.html">
+                                3. vue 点击菜单跳转外部页面(1)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/whycai/p/10979705.html">
+                                4. appium 使用name 定位报错 Locator Strategy 'name' is not supported for this session(1)
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div></div>
+                    <script>loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright © 2020 菜小鱼
+<br><span id="poweredby">Powered by .NET Core on Kubernetes</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    <div id="page_end_html">
+        <script>
+  
+!function(){
+  
+ function n(n,e,t){
+  
+ return n.getAttribute(e)||t
+  
+ }
+  
+ function e(n){
+  
+ return document.getElementsByTagName(n)
+  
+ }
+  
+ function t(){
+  
+ var t=e("script"),o=t.length,i=t[o-1];
+  
+ return{
+  
+ l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",.5),c:n(i,"color","0,0,0"),n:n(i,"count",99)
+  
+ }
+  
+ }
+  
+ function o(){
+  
+ a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+  
+ c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+  
+ }
+  
+ function i(){
+  
+ r.clearRect(0,0,a,c);
+  
+ var n,e,t,o,m,l;
+  
+ s.forEach(function(i,x){
+  
+ for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+  
+ null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+  
+ l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+  
+ t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+  
+ }),
+ 
+ x(i)
+  
+ }
+  
+ var a,c,u,m=document.createElement("canvas"),
+  
+ d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+  
+ function(n){
+ 
+ window.setTimeout(n,1e3/45)
+  
+ },
+  
+ w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+  
+ window.onmousemove=function(n){
+  
+ n=n||window.event,y.x=n.clientX,y.y=n.clientY
+  
+ },
+  
+ window.onmouseout=function(){
+  
+ y.x=null,y.y=null
+  
+ };
+  
+ for(var s=[],f=0;d.n>f;f++){
+  
+ var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+  
+ }
+  
+ u=s.concat([y]),
+  
+ setTimeout(function(){i()},100)
+  
+ }();
+  
+ </script>
+    </div><canvas id="c_n18" width="1920" height="840" style="position: fixed; top: 0px; left: 0px; z-index: -1; opacity: 0.5;"></canvas>
+
+
+<script type="text/javascript"> 
+/* 鼠标特效 */ 
+var a_idx = 0; 
+jQuery(document).ready(function($) { 
+    $("body").click(function(e) { 
+        var a = new Array("富强","民主","和谐","文明","自由","平等","公正","法治","爱国","敬业","诚信","友善"); 
+        var $i = $("<span></span>").text(a[a_idx]); 
+        a_idx = (a_idx + 1) % a.length; 
+        var x = e.pageX, 
+        y = e.pageY; 
+        $i.css({ 
+            "z-index": 999999999999999999999999999999999999999999999999999999999999999999999, 
+            "top": y - 20, 
+            "left": x, 
+            "position": "absolute", 
+            "font-weight": "bold", 
+            "color": "RGB(255,158,134)" 
+        }); 
+        $("body").append($i); 
+        $i.animate({ 
+            "top": y - 180, 
+            "opacity": 0 
+        }, 
+        1500, 
+        function() { 
+            $i.remove(); 
+        }); 
+    }); 
+}); 
+</script><script type="text/javascript">getFollowStatus('4c8fb681-1eee-40a8-f824-08d6bd63de79');</script></body></html>

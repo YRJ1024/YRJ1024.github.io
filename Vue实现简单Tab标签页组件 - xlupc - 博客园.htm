@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)https://www.cnblogs.com/xiongxiaolong/p/10274325.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    <meta property="og:description" content="Tab 标签页组件 基础用法 默认情况下启用第一个标签，可以通过 绑定当前激活的标签索引 点击事件 可以在tabs上绑定click事件和change事件，事件传参为标签对应的索引和标题 Tabs AP">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vue实现简单Tab标签页组件 - xlupc - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="https://common.cnblogs.com/favicon.ico?v=20200522" type="image/x-icon">
+    
+    <link rel="stylesheet" href="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/blog-common.min.css">
+    
+    <link type="text/css" rel="stylesheet" href="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/custom.css">
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/bundle-SimpleMemory-mobile.min.css">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiongxiaolong/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiongxiaolong/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiongxiaolong/wlwmanifest.xml">
+    <script async="" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/analytics.js"></script><script src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/jquery-2.2.0.min.js"></script>
+    <script src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/blog-common.min.js"></script>
+    <script>
+        var currentBlogId = 481366;
+        var currentBlogApp = 'xiongxiaolong';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+        var skinName = 'SimpleMemory';
+    </script>
+    
+    
+    
+<script src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/pubads_impl_2020061202.js" async=""></script><link rel="prefetch" href="https://b5da478ada50d549b454cb7dde42f492.safeframe.googlesyndication.com/safeframe/1-0-37/html/container.html"><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-37/html/container.html"><script src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/jquery.mousewheel.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="ToProgress" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/ToProgress.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="rotate" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/jquery.rotate.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="snapSvg" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/snap.svg-min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="tools" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/tools.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="js/css.min" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/css.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="classie" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/classie.min.js"></script><link type="text/css" rel="stylesheet" href="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/optiscroll.min.css"><link type="text/css" rel="stylesheet" href="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/menu_bubble.min.css"><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="optiscroll" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/jquery.optiscroll.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="main4" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/main4.min.js"></script><link type="text/css" rel="stylesheet" href="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/font_1009154_rsp7j4lzixo.css"><link type="text/css" rel="stylesheet" href="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/5a531cbbf629dc07a8fbd011.css"><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="base" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/base.min.js"></script><link href="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/xcode.css" rel="stylesheet" type="text/css"><link href="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/jquery.mCustomScrollbar.min.css" rel="stylesheet" type="text/css"><link rel="shortcut icon" href="https://raw.githubusercontent.com/xlupc/cnblogs-theme/master/img/icons8-beach-480.png"><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="RibbonsEffect" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/RibbonsEffect.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="highlightjs" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/highlight.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="articleStatement" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/articleStatement.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="TweenMax" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/TweenMax.min.js"></script><link type="text/css" rel="stylesheet" href="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/baguetteBox.min.css"><link type="text/css" rel="stylesheet" href="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/gallery-clean.min.css"><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="title" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/articleTitle.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="bootstrap" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/bootstrap.min.js"></script><link type="text/css" rel="stylesheet" href="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/marvin.nav2.min.css"><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="marvin" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/marvin.nav2.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="MyTween" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/MyTween.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="baguetteBox" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/baguetteBox.min.js"></script></head>
+<body style="overflow: auto;"><div id="pageAnimationOffOn" data="off" style="z-index:  999;position:  absolute;top: 15px;right: 20px;font-size: 14px;color: #f9f9f9;cursor: pointer;"><span id="pageAnimationOffOnIcon" class="iconfont icon-lightningbshandian" style="display: inline-block;"></span><span id="pageAnimationOffOnText">关闭页面特效</span></div>
+    <a name="top"></a>
+    <div id="page_begin_html">
+        <!-- Loading 底层遮罩 -->
+<div id="loading" style="display: none;"></div>
+    </div>
+    
+<!--done-->
+<div id="home" style="margin-top: 336px;">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/xiongxiaolong/"><img id="blogLogo" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/logo.gif" alt="返回主页"></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/xiongxiaolong/">Xlupc's blog</a>
+</h1>
+<h2>
+
+</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/xiongxiaolong/">
+首页</a>
+</li>
+<li>
+
+
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/xlupc">
+联系</a></li>
+<li>
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/xiongxiaolong/rss/">
+订阅</a>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			
+			<span id="stats_post_count">随笔 - 
+36&nbsp; </span>
+<span id="stats_article_count">文章 - 
+2&nbsp; </span>
+<span id="stats-comment_count">评论 - 
+2</span>
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    <!--done-->
+    <div id="topics">
+        <div class="post">
+            <h1 class="postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2 vertical-middle post-del-title" href="https://www.cnblogs.com/xiongxiaolong/p/10274325.html">
+    <span>Vue实现简单Tab标签页组件</span>
+    
+
+
+</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                
+<div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown">
+    <span title-type="h2" class="header__span"><h2 id="autoid-0-0-0" class="header__dev"><b class="dev__fe"><i>0</i></b><span class="dev__slash">|</span><b class="dev__ux"><i>1</i></b><b class="dev__developer"><span class="dev__title">Tab 标签页组件</span></b></h2></span><br>
+<h3 id="基础用法">基础用法</h3>
+<p>默认情况下启用第一个标签，可以通过<code>v-model</code>绑定当前激活的标签索引</p>
+<pre style="overflow: visible; background-color: rgb(246, 248, 250); position: relative;" class="hljs gauss mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar"><div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" style="max-height: none;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y mCS_x_hidden mCS_no_scrollbar_x" style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">&lt;tabs v-model=<span class="hljs-string">"active"</span>&gt;
+  &lt;<span class="hljs-built_in">tab</span> <span class="hljs-built_in">title</span>=<span class="hljs-string">"标签 1"</span>&gt;内容 <span class="hljs-number">1</span>&lt;/<span class="hljs-built_in">tab</span>&gt;
+  &lt;<span class="hljs-built_in">tab</span> <span class="hljs-built_in">title</span>=<span class="hljs-string">"标签 2"</span>&gt;内容 <span class="hljs-number">2</span>&lt;/<span class="hljs-built_in">tab</span>&gt;
+  &lt;<span class="hljs-built_in">tab</span> <span class="hljs-built_in">title</span>=<span class="hljs-string">"标签 3"</span>&gt;内容 <span class="hljs-number">3</span>&lt;/<span class="hljs-built_in">tab</span>&gt;
+&lt;/tabs&gt;
+export default {
+  data() {
+    <span class="hljs-keyword">return</span> {
+      active: <span class="hljs-number">2</span>
+    };
+  }
+}
+</div></div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; height: 0px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 50px; background-color: rgb(0, 116, 0);"></div></div><div class="mCSB_draggerRail"></div></div></div><div id="mCSB_1_scrollbar_horizontal" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_horizontal" class="mCSB_dragger" style="position: absolute; min-width: 50px; width: 0px; left: 0px;"><div class="mCSB_dragger_bar" style="background-color: rgb(0, 116, 0);"></div></div><div class="mCSB_draggerRail"></div></div></div></pre>
+<h3 id="点击事件">点击事件</h3>
+<p>可以在tabs上绑定click事件和change事件，事件传参为标签对应的索引和标题</p>
+<pre style="overflow: visible; background-color: rgb(246, 248, 250); position: relative;" class="hljs xml mCustomScrollbar _mCS_2 mCS-autoHide mCS_no_scrollbar"><div id="mCSB_2" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0" style="max-height: none;"><div id="mCSB_2_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y mCS_x_hidden mCS_no_scrollbar_x" style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr"><span class="hljs-tag">&lt;<span class="hljs-name">tabs</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">"handleClick"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tabs</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">tabs</span> @<span class="hljs-attr">change</span>=<span class="hljs-string">"handleChange"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tabs</span>&gt;</span>
+</div></div><div id="mCSB_2_scrollbar_vertical" class="mCSB_scrollTools mCSB_2_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_2_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; height: 0px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 50px; background-color: rgb(0, 116, 0);"></div></div><div class="mCSB_draggerRail"></div></div></div><div id="mCSB_2_scrollbar_horizontal" class="mCSB_scrollTools mCSB_2_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_2_dragger_horizontal" class="mCSB_dragger" style="position: absolute; min-width: 50px; width: 0px; left: 0px;"><div class="mCSB_dragger_bar" style="background-color: rgb(0, 116, 0);"></div></div><div class="mCSB_draggerRail"></div></div></div></pre>
+<h3 id="tabs-api">Tabs API</h3>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>类型</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v-model</td>
+<td>String Number</td>
+<td>0</td>
+<td>当前标签的索引</td>
+</tr>
+<tr>
+<td>color</td>
+<td>String</td>
+<td>red</td>
+<td>标签和底部条颜色</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>Number</td>
+<td>0.3</td>
+<td>动画时间，单位秒</td>
+</tr>
+<tr>
+<td>line-width</td>
+<td>Number</td>
+<td>tab.offsetWidth / 2</td>
+<td>底部条宽度，单位 px</td>
+</tr>
+<tr>
+<td>line-height</td>
+<td>Number</td>
+<td>3</td>
+<td>底部条高度，单位 px</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tab-api">Tab API</h3>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>类型</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td>String</td>
+<td>-</td>
+<td>tab页的标题</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example">example</h4>
+<p><a class="lightbox" href="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/1560012-20190115211804303-1641142153.png"><img src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/1560012-20190115211804303-1641142153.png" alt="" loading="lazy"></a></p>
+<p><a class="lightbox" href="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/1560012-20190115211844055-1462326401.png"><img src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/1560012-20190115211844055-1462326401.png" alt="" loading="lazy"></a></p>
+<h3 id="code">code</h3>
+<h4 id="tab">tab</h4>
+<pre style="overflow: visible; background-color: rgb(246, 248, 250); position: relative;" class="hljs kotlin mCustomScrollbar _mCS_3 mCS-autoHide mCS_no_scrollbar"><div id="mCSB_3" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0" style="max-height: none;"><div id="mCSB_3_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y mCS_x_hidden mCS_no_scrollbar_x" style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">&lt;template&gt;
+  &lt;div 
+    v-show=<span class="hljs-string">"isSelected"</span>
+    <span class="hljs-class"><span class="hljs-keyword">class</span>="<span class="hljs-title">tab__pane</span>"</span>
+    &gt;
+    &lt;slot /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export <span class="hljs-keyword">default</span> {
+  name: <span class="hljs-string">'tab'</span>,
+  props: {
+    title: String,
+  },
+  <span class="hljs-keyword">data</span>() {
+    <span class="hljs-keyword">return</span> {
+      parent: <span class="hljs-literal">null</span>,
+    };
+  },
+  computed: {
+    index() {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.parent.tabs.indexOf(<span class="hljs-keyword">this</span>);
+    },
+    isSelected() {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.index === <span class="hljs-keyword">this</span>.parent.curActive;
+    },
+  },
+  watch: {
+    title() {
+      <span class="hljs-keyword">this</span>.parent.setLine();
+    }
+  },
+  methods: {
+    findParent(name) {
+      let parent = <span class="hljs-keyword">this</span>.$parent;
+      <span class="hljs-keyword">while</span> (parent) {
+        <span class="hljs-keyword">if</span> (parent.$options.name === name) {
+          <span class="hljs-keyword">this</span>.parent = parent;
+          <span class="hljs-keyword">break</span>;
+        }
+        parent = parent.$parent; <span class="hljs-comment">// 多层嵌套</span>
+      }
+    },
+  },
+  created() {
+    <span class="hljs-keyword">this</span>.findParent(<span class="hljs-string">'tabs'</span>);
+  },
+  mounted() {
+    <span class="hljs-keyword">const</span> { tabs } = <span class="hljs-keyword">this</span>.parent;
+    <span class="hljs-keyword">const</span> index = <span class="hljs-keyword">this</span>.parent.$slots.<span class="hljs-keyword">default</span>.indexOf(<span class="hljs-keyword">this</span>.$vnode);
+    tabs.splice(index === -<span class="hljs-number">1</span> ? tabs.length : index, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>);
+  },
+  beforeDestroy() {
+    <span class="hljs-keyword">this</span>.parent.tabs.splice(<span class="hljs-keyword">this</span>.index, <span class="hljs-number">1</span>);
+  },
+};
+&lt;/script&gt;
+
+&lt;style&gt;
+.tab__pane {
+}
+&lt;/style&gt;
+
+</div></div><div id="mCSB_3_scrollbar_vertical" class="mCSB_scrollTools mCSB_3_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_3_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; height: 0px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 50px; background-color: rgb(0, 116, 0);"></div></div><div class="mCSB_draggerRail"></div></div></div><div id="mCSB_3_scrollbar_horizontal" class="mCSB_scrollTools mCSB_3_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_3_dragger_horizontal" class="mCSB_dragger" style="position: absolute; min-width: 50px; width: 0px; left: 0px;"><div class="mCSB_dragger_bar" style="background-color: rgb(0, 116, 0);"></div></div><div class="mCSB_draggerRail"></div></div></div></pre>
+<h4 id="tabs">tabs</h4>
+<pre style="overflow: visible; background-color: rgb(246, 248, 250); position: relative;" class="hljs processing mCustomScrollbar _mCS_4 mCS-autoHide mCS_no_scrollbar"><div id="mCSB_4" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0" style="max-height: none;"><div id="mCSB_4_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y mCS_x_hidden mCS_no_scrollbar_x" style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">&lt;template&gt;
+  &lt;div class=<span class="hljs-string">"tabs"</span>&gt;
+    &lt;div class=<span class="hljs-string">"tabs__nav"</span>&gt;
+      &lt;div
+       class=<span class="hljs-string">"tabs__line"</span>
+       :style=<span class="hljs-string">"lineStyle"</span>
+      &gt;&lt;/div&gt;
+      &lt;div 
+        v-<span class="hljs-keyword">for</span>=<span class="hljs-string">"(tab, index) in tabs"</span> 
+        :<span class="hljs-built_in">key</span>=<span class="hljs-string">"index"</span> 
+        ref=<span class="hljs-string">"tabs"</span>
+        @click=<span class="hljs-string">"onClick(index)"</span>
+        class=<span class="hljs-string">"tab"</span>
+        :style=<span class="hljs-string">"getTabStyle(tab, index)"</span>
+        :class=<span class="hljs-string">"{'tab--active': index === curActive,}"</span>
+      &gt;
+        &lt;span&gt;{{tab.title}}&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;slot/&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export <span class="hljs-keyword">default</span> {
+  name: <span class="hljs-string">'tabs'</span>,
+  model: {
+    prop: <span class="hljs-string">'active'</span>,
+  },
+  props: {
+    <span class="hljs-built_in">color</span>: <span class="hljs-keyword">String</span>,
+    lineWidth: {
+      type: Number,
+      <span class="hljs-keyword">default</span>: <span class="hljs-keyword">null</span>,
+    },
+    lineHeight: {
+      type: Number,
+      <span class="hljs-keyword">default</span>: <span class="hljs-number">3</span>,
+    },
+    duration: {
+      type: Number,
+      <span class="hljs-keyword">default</span>: <span class="hljs-number">0.3</span>,
+    },
+    active: {
+      type: [Number, <span class="hljs-keyword">String</span>],
+      <span class="hljs-keyword">default</span>: <span class="hljs-number">0</span>,
+    },
+  },
+  data() {
+    <span class="hljs-keyword">return</span> {
+      tabs: [],
+      curActive: <span class="hljs-keyword">null</span>,
+      lineStyle: {
+        backgroundColor: <span class="hljs-keyword">this</span>.<span class="hljs-built_in">color</span>,
+      },
+    };
+  },
+  computed: {},
+  watch: {
+    active(val) {
+      <span class="hljs-keyword">if</span> (val !== <span class="hljs-keyword">this</span>.curActive) {
+        <span class="hljs-keyword">this</span>.correctActive(val);
+      }
+    },
+    <span class="hljs-built_in">color</span>() {
+      <span class="hljs-keyword">this</span>.setLine();
+    },
+    tabs() {
+      <span class="hljs-keyword">this</span>.correctActive(<span class="hljs-keyword">this</span>.curActive || <span class="hljs-keyword">this</span>.active);
+      <span class="hljs-keyword">this</span>.setLine();
+    },
+    curActive() {
+      <span class="hljs-keyword">this</span>.setLine();
+    },
+  },
+  mounted() {
+    <span class="hljs-keyword">this</span>.correctActive(<span class="hljs-keyword">this</span>.active);
+    <span class="hljs-keyword">this</span>.isFirstLoaded = <span class="hljs-keyword">true</span>;
+    <span class="hljs-keyword">this</span>.$nextTick(() =&gt; {
+      <span class="hljs-keyword">this</span>.isFirstLoaded = <span class="hljs-keyword">false</span>;
+    });
+  },
+  methods: {
+    onClick(index) {
+      <span class="hljs-keyword">const</span> { title } = <span class="hljs-keyword">this</span>.tabs[index];
+      <span class="hljs-keyword">this</span>.setCurActive(index);
+      <span class="hljs-keyword">this</span>.$emit(<span class="hljs-string">'click'</span>, index, title);
+    },
+    setActive() {},
+    correctActive(active) {
+      active = +active;
+      <span class="hljs-comment">// console.log(active, 'active');</span>
+      <span class="hljs-keyword">const</span> exist = <span class="hljs-keyword">this</span>.tabs.some(tab =&gt; tab.index === active);
+      <span class="hljs-keyword">const</span> defaultActive = (<span class="hljs-keyword">this</span>.tabs[<span class="hljs-number">0</span>] || {}).index || <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">this</span>.setCurActive(exist ? active : defaultActive);
+    },
+    setCurActive(active) {
+      <span class="hljs-keyword">if</span> (active !== <span class="hljs-keyword">this</span>.curActive) {
+        console.<span class="hljs-built_in">log</span>(<span class="hljs-keyword">this</span>.curActive);
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.curActive !== <span class="hljs-keyword">null</span>) {
+          <span class="hljs-keyword">this</span>.$emit(<span class="hljs-string">'change'</span>, active, <span class="hljs-keyword">this</span>.tabs[active].title);
+        }
+        <span class="hljs-keyword">this</span>.curActive = active;
+      }
+    },
+    setLine() {
+      <span class="hljs-keyword">const</span> animation = <span class="hljs-keyword">this</span>.isFirstLoaded;
+      <span class="hljs-keyword">this</span>.$nextTick(() =&gt; {
+        <span class="hljs-keyword">const</span> { tabs } = <span class="hljs-keyword">this</span>.$refs;
+        <span class="hljs-keyword">if</span> (!tabs || !tabs[<span class="hljs-keyword">this</span>.curActive]) {
+          <span class="hljs-keyword">return</span>;
+        }
+        <span class="hljs-keyword">const</span> tab = tabs[<span class="hljs-keyword">this</span>.curActive];
+        <span class="hljs-keyword">const</span> { lineWidth, lineHeight } = <span class="hljs-keyword">this</span>;
+        <span class="hljs-comment">/* eslint-disable no-unneeded-ternary */</span>
+        <span class="hljs-keyword">const</span> <span class="hljs-built_in">width</span> = lineWidth ? lineWidth : (tab.offsetWidth / <span class="hljs-number">2</span>);
+        <span class="hljs-comment">/* eslint-disable no-unneeded-ternary */</span>
+        <span class="hljs-keyword">const</span> left = tab.offsetLeft + ((tab.offsetWidth - <span class="hljs-built_in">width</span>) / <span class="hljs-number">2</span>);
+        <span class="hljs-keyword">const</span> lineStyle = {
+          <span class="hljs-built_in">width</span>: `${<span class="hljs-built_in">width</span>}px`,
+          backgroundColor: <span class="hljs-keyword">this</span>.<span class="hljs-built_in">color</span>,
+          transform: `translateX(${left}px)`,
+        };
+        <span class="hljs-keyword">if</span> (!animation) {
+          lineStyle.transitionDuration = `${<span class="hljs-keyword">this</span>.duration}s`;
+        }
+        let <span class="hljs-built_in">height</span> = <span class="hljs-string">''</span>;
+        <span class="hljs-keyword">if</span> (lineHeight) {
+          <span class="hljs-built_in">height</span> = `${lineHeight}px`;
+        } <span class="hljs-keyword">else</span> {
+          <span class="hljs-built_in">height</span> = <span class="hljs-string">'3px'</span>;
+        }
+        lineStyle.<span class="hljs-built_in">height</span> = <span class="hljs-built_in">height</span>;
+        lineStyle.borderRadius = <span class="hljs-built_in">height</span>;
+        <span class="hljs-keyword">this</span>.lineStyle = lineStyle;
+      });
+    },
+    getTabStyle(tab, index) {
+      <span class="hljs-keyword">if</span> (index === <span class="hljs-keyword">this</span>.curActive) {
+        <span class="hljs-keyword">return</span> {
+          <span class="hljs-built_in">color</span>: <span class="hljs-keyword">this</span>.<span class="hljs-built_in">color</span>,
+          fontWeight: <span class="hljs-string">'bold'</span>,
+        };
+      }
+    },
+  },
+};
+&lt;/script&gt;
+&lt;style&gt;
+.tab {
+  flex: <span class="hljs-number">1</span>;
+  <span class="hljs-built_in">cursor</span>: pointer;
+  <span class="hljs-built_in">min</span>-<span class="hljs-built_in">width</span>: <span class="hljs-number">0</span>;
+  padding: <span class="hljs-number">0</span> <span class="hljs-number">5</span>px;
+  font-<span class="hljs-built_in">size</span>: <span class="hljs-number">14</span>px;
+  position: relative;
+  <span class="hljs-built_in">color</span>: #<span class="hljs-number">000</span>;
+  <span class="hljs-built_in">line</span>-<span class="hljs-built_in">height</span>: <span class="hljs-number">50</span>px;
+  <span class="hljs-built_in">text</span>-align: center;
+  <span class="hljs-built_in">box</span>-sizing: border-<span class="hljs-built_in">box</span>;
+  <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: #fff;
+  span {
+    display: block;
+  }
+  &amp;--active {
+    font-weight: <span class="hljs-number">500</span>!important;
+  }
+}
+.tabs {
+  position: relative;
+  &amp;__nav {
+    display: flex;
+    user-select: none;
+    position: relative;
+    <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: #fff;
+    <span class="hljs-built_in">height</span>: <span class="hljs-number">100</span>%;
+    <span class="hljs-built_in">box</span>-sizing: content-<span class="hljs-built_in">box</span>;
+  }
+  &amp;__line {
+    z-index: <span class="hljs-number">1</span>;
+    left: <span class="hljs-number">0</span>;
+    bottom: <span class="hljs-number">0</span>px;
+    <span class="hljs-built_in">height</span>: <span class="hljs-number">3</span>px;
+    position: absolute;
+    border-radius: <span class="hljs-number">3</span>px;
+    <span class="hljs-built_in">background</span>-<span class="hljs-built_in">color</span>: <span class="hljs-built_in">red</span>;
+  }
+}
+&lt;/style&gt;
+</div></div><div id="mCSB_4_scrollbar_vertical" class="mCSB_scrollTools mCSB_4_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_4_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; height: 0px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 50px; background-color: rgb(0, 116, 0);"></div></div><div class="mCSB_draggerRail"></div></div></div><div id="mCSB_4_scrollbar_horizontal" class="mCSB_scrollTools mCSB_4_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_4_dragger_horizontal" class="mCSB_dragger" style="position: absolute; min-width: 50px; width: 0px; left: 0px;"><div class="mCSB_dragger_bar" style="background-color: rgb(0, 116, 0);"></div></div><div class="mCSB_draggerRail"></div></div></div></pre>
+<p>END</p>
+
+<br><p style="font-weight:  bold;font-size: 16px;text-align:  center;color: #ddd;text-indent: 0;">--EOF--</p><p class="signature"><span style="font-weight: bold; white-space:nowrap;">作　　者</span>：<strong><span style="font-size: 12px; color: red;"><a href="https://www.cnblogs.com/xiongxiaolong/p/10274325.html" target="_blank">xlupc</a></span></strong> <br><span style="font-weight: bold; white-space:nowrap;">出　　处</span>：<a href="https://www.cnblogs.com/xiongxiaolong/p/10274325.html" target="_blank">https://www.cnblogs.com/xiongxiaolong/p/10274325.html</a><br><span style="font-weight: bold; white-space:nowrap;">版权声明</span>：署名 - 非商业性使用 - 禁止演绎，<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" alt="协议普通文本" title="协议普通文本" target="_blank">协议普通文本</a> | <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode" alt="协议法律文本" title="协议法律文本" target="_blank">协议法律文本</a>。<br><span style="font-weight: bold; white-space:nowrap;">声援博主</span>：如果您觉得文章对您有帮助，可以点击文章右下角<strong><span style="color: #ff0000; font-size: 12pt;">【<a id="post-up" onclick="votePost(10274325,&#39;Digg&#39;)" href="javascript:void(0);">推荐</a>】</span></strong>一下。您的鼓励是博主的最大动力！<br></p></div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block"><div id="BlogPostCategory">
+    分类: 
+            <a href="https://www.cnblogs.com/xiongxiaolong/category/1383850.html" target="_blank">vue</a></div>
+<div id="EntryTag">
+    标签: 
+            <a href="https://www.cnblogs.com/xiongxiaolong/tag/tab/">tab</a>,             <a href="https://www.cnblogs.com/xiongxiaolong/tag/vue/">vue</a></div>
+
+    <div id="blog_post_info">
+<div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(10274325,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+        <a id="green_channel_follow" onclick="follow(&#39;1b07322c-eb8d-42c2-62b8-08d65dae0ffa&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/xiongxiaolong/" target="_blank"><img src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/20181210235646.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/xiongxiaolong/">xlupc</a><br>
+            <a href="https://home.cnblogs.com/u/xiongxiaolong/followees/">关注 - 0</a><br>
+            <a href="https://home.cnblogs.com/u/xiongxiaolong/followers/">粉丝 - 3</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;1b07322c-eb8d-42c2-62b8-08d65dae0ffa&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(10274325,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(10274325,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+    <div class="clear"></div>
+    <div id="post_next_prev">
+
+    <a href="https://www.cnblogs.com/xiongxiaolong/p/10191863.html" class="p_n_p_prefix">« </a> 上一篇：    <a href="https://www.cnblogs.com/xiongxiaolong/p/10191863.html" title="发布于 2018-12-28 17:32">使用webpack-dev-server实现热更新</a>
+    <br>
+    <a href="https://www.cnblogs.com/xiongxiaolong/p/10274522.html" class="p_n_p_prefix">» </a> 下一篇：    <a href="https://www.cnblogs.com/xiongxiaolong/p/10274522.html" title="发布于 2019-01-15 21:57">css代码规范</a>
+
+</div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2019-01-15 21:14</span>&nbsp;
+<a href="https://www.cnblogs.com/xiongxiaolong/">xlupc</a>&nbsp;
+阅读(<span id="post_view_count">1732</span>)&nbsp;
+评论(<span id="post_comment_count">0</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=10274325" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(10274325);return false;">收藏</a></div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+<script src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/highlight.min(1).js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 481366, cb_blogApp = 'xiongxiaolong', cb_blogUserGuid = '1b07322c-eb8d-42c2-62b8-08d65dae0ffa';
+    var cb_entryId = 10274325, cb_entryCreatedDate = '2019-01-15 21:14', cb_postType = 1; 
+    loadViewCount(cb_entryId);
+    loadSideColumnAd();
+</script><a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<script>
+    var commentManager = new blogCommentManager();
+    commentManager.renderComments(0);
+</script>
+
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/xiongxiaolong/p/10274325.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/xiongxiaolong/p/10274325.html#top">返回顶部</a></div>
+    <div id="comment_form_container" style="visibility: visible;"><div class="login_tips">
+    注册用户登录后才能发表评论，请 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a>
+     或 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，
+    <a href="https://www.cnblogs.com/">访问</a> 网站首页。
+</div></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"><a href="https://www.wenjuan.com/s/3uIjeq0/" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-博客园问卷调查&#39;)">【推荐】了解你才能更懂你，博客园首发问卷调查，助力社区新升级</a><br><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-ucancode&#39;)">【推荐】超50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://developer.aliyun.com/ask/272857?utm_content=g_1000104135" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-阿里云开发者社区&#39;)">【推荐】Java实战200例（附源码）-助你提升实战能力</a><br></div>
+    <div id="opt_under_post"></div>
+    <script async="async" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/gpt.js"></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+    <script>
+        var mobileVisit = screen.width < 500;
+        googletag.cmd.push(function () {
+            googletag.defineSlot("/1090369/C1", [300, 250], "div-gpt-ad-1546353474406-0").addService(googletag.pubads());
+            if (!mobileVisit) {
+                googletag.defineSlot("/1090369/C2", [468, 60], "div-gpt-ad-1539008685004-0").addService(googletag.pubads());
+            }
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+    <div id="cnblogs_c1" class="c_ad_block" style="">
+        <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;" data-google-query-id="CIzQ_-nWhuoCFc4CXAod2dEK-g"><div id="google_ads_iframe_/1090369/C1_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C1_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C1_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" data-google-container-id="1" data-load-complete="true" style="border: 0px; vertical-align: bottom;" src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/saved_resource.html"></iframe></div></div>
+    </div>
+    <div id="under_post_news"></div>
+    <div id="cnblogs_c2" class="c_ad_block" style="display: none;">
+        <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;" data-google-query-id="CI3Q_-nWhuoCFc4CXAod2dEK-g"><div id="google_ads_iframe_/1090369/C2_0__container__" style="border: 0pt none; width: 468px; height: 60px;"></div></div>
+    </div>
+    <div id="under_post_kb"></div>
+    <div id="HistoryToday" class="c_ad_block"></div>
+    <script type="text/javascript">
+        fixPostBody();
+        deliverBigBanner();
+setTimeout(function() { incrementViewCount(cb_entryId); }, 50);        deliverAdT2();
+        deliverAdC1();
+        deliverAdC2();
+        loadNewsAndKb();
+        loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+        loadOptUnderPost();
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<div id="sidebar_news" class="newsItem"><!--done-->
+<h3 class="catListTitle">公告</h3>
+
+<div id="blog-news">
+    <!-- menu html -->
+<div class="container">
+    <div class="menu-wrap optiscroll is-enabled" id="menuWrap" style="display:none"><div class="optiscroll-content" style="right: -15px; bottom: -15px;">
+        <nav class="menu">
+
+            <!-- 个人简介 -->
+            <div class="introduce-box">
+                <div class="introduce-head">
+                    <div class="introduce-via" id="menuBlogAvatar"><img src="https://raw.githubusercontent.com/xlupc/cnblogs-theme/master/img/xlupc.jpg"></div>
+                </div>
+                <div id="introduce">
+        昵称：
+        <a href="https://home.cnblogs.com/u/xiongxiaolong/">
+            xlupc
+        </a>
+        <br>
+        园龄：
+        <a href="https://home.cnblogs.com/u/xiongxiaolong/" title="入园时间：2018-12-10">
+            1年6个月
+        </a>
+        <br>
+        粉丝：
+        <a href="https://home.cnblogs.com/u/xiongxiaolong/followers/">
+            3
+        </a>
+        <br>
+        关注：
+        <a href="https://home.cnblogs.com/u/xiongxiaolong/followees/">
+            0
+        </a>
+        <div id="p_b_follow">
+<a href="javascript:void(0)" onclick="follow(&#39;1b07322c-eb8d-42c2-62b8-08d65dae0ffa&#39;)">+加关注</a></div>
+        
+    </div>
+            </div>
+
+            <!-- 导航 -->
+            <div class="nav-title"></div>
+            <div class="icon-list">
+                <ul>
+                    <li><a href="https://www.cnblogs.com/xiongxiaolong/" target="_self">首页</a></li>
+                    <li><a href="https://msg.cnblogs.com/send/xiongxiaolong" target="_blank">联系</a></li>
+                    <li><a href="https://www.cnblogs.com/xiongxiaolong/rss" target="_blank">订阅</a></li>
+                    <li><a href="https://i.cnblogs.com/" target="_blank">管理</a></li>
+                    <li><a href="https://github.com/xlupc" target="_blank">GitHub</a></li>
+                    <li><a href="https://www.cnblogs.com/" target="_blank">CNBlogs</a></li>
+                </ul>
+            </div>
+
+            <!-- 最新随笔 -->
+            <div class="m-list-title"><span>最新随笔</span></div>
+            <div class="m-icon-list" id="sb-sidebarRecentposts"></div>
+
+            <!-- 我的标签 -->
+            <div class="m-list-title" style="display: block;"><span>我的标签</span></div>
+            <div class="m-icon-list" id="sb-toptags"><div><ul><li><a href="https://www.cnblogs.com/xiongxiaolong/tag/android/"><span class="iconfont icon-label_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>android</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/tag/React/"><span class="iconfont icon-label_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>React</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/tag/react-native/"><span class="iconfont icon-label_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>react-native</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/tag/js/"><span class="iconfont icon-label_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>js</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/tag/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"><span class="iconfont icon-label_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>移动端</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/tag/webpack/"><span class="iconfont icon-label_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>webpack</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/tag/css/"><span class="iconfont icon-label_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>css</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/tag/git/"><span class="iconfont icon-label_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>git</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/tag/ios/"><span class="iconfont icon-label_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>ios</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/tag/touch/"><span class="iconfont icon-label_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>touch</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/tag/"><span class="iconfont icon-label_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>更多</a></li></ul></div></div>
+
+            <!-- 随笔分类 -->
+            <div class="m-list-title" style="display: block;"><span>随笔分类</span></div>
+            <div class="m-icon-list" id="sb-classify"><div><ul><li><a href="https://www.cnblogs.com/xiongxiaolong/category/1360773.html" rel="" target=""><span class="iconfont icon-marketing_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>algorithm(1)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/category/1369489.html" rel="" target=""><span class="iconfont icon-marketing_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>css(5)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/category/1468219.html" rel="" target=""><span class="iconfont icon-marketing_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>java(1)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/category/1400009.html" rel="" target=""><span class="iconfont icon-marketing_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>js(3)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/category/1360774.html" rel="" target=""><span class="iconfont icon-marketing_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>nodejs(2)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/category/1360775.html" rel="" target=""><span class="iconfont icon-marketing_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>others(5)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/category/1361236.html" rel="" target=""><span class="iconfont icon-marketing_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>react(3)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/category/1364550.html" rel="" target=""><span class="iconfont icon-marketing_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>react-native(4)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/category/1383850.html" rel="" target=""><span class="iconfont icon-marketing_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>vue(1)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/category/1372689.html" rel="" target=""><span class="iconfont icon-marketing_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>webpack(1)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/category/1370992.html" rel="" target=""><span class="iconfont icon-marketing_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>计算机基础(4)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/category/1391915.html" rel="" target=""><span class="iconfont icon-marketing_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>移动端(8)</a></li></ul></div></div>
+
+            <!-- 随笔档案 -->
+            <div class="m-list-title" style="display: block;"><span>随笔档案</span></div>
+            <div class="m-icon-list" id="sb-record"><div><ul><li><a href="https://www.cnblogs.com/xiongxiaolong/archive/2020/06.html" rel="" target=""><span class="iconfont icon-task_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>2020年6月(1)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/archive/2019/09.html" rel="" target=""><span class="iconfont icon-task_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>2019年9月(1)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/archive/2019/05.html" rel="" target=""><span class="iconfont icon-task_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>2019年5月(5)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/archive/2019/04.html" rel="" target=""><span class="iconfont icon-task_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>2019年4月(2)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/archive/2019/03.html" rel="" target=""><span class="iconfont icon-task_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>2019年3月(1)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/archive/2019/02.html" rel="" target=""><span class="iconfont icon-task_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>2019年2月(5)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/archive/2019/01.html" rel="" target=""><span class="iconfont icon-task_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>2019年1月(7)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/archive/2018/12.html" rel="" target=""><span class="iconfont icon-task_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>2018年12月(14)</a></li></ul></div></div>
+
+            <!-- 阅读排行 -->
+            <div class="m-list-title" style="display: block;"><span>阅读排行</span></div>
+            <div class="m-icon-list" id="sb-topview"><div><ul><li><a href="https://www.cnblogs.com/xiongxiaolong/p/10823047.html"><span class="iconfont icon-browse_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>1. okhttp3 post请求基本使用以及超时重连(3179)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/p/10274325.html"><span class="iconfont icon-browse_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>2. Vue实现简单Tab标签页组件(1732)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/p/10713078.html"><span class="iconfont icon-browse_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>3. react-navigation createBottomTabNavigator 刷新问题(1472)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/p/10321652.html"><span class="iconfont icon-browse_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>4. ios关于fixed布局的解决思路(820)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/p/10370920.html"><span class="iconfont icon-browse_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>5. tree命令查看目录树(803)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/p/10771139.html"><span class="iconfont icon-browse_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>6. React Native 点击两次返回键退出应用(682)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/p/10330271.html"><span class="iconfont icon-browse_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>7. 移动端android touchend事件长按或滑动时不触发(640)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/p/10346782.html"><span class="iconfont icon-browse_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>8. ios 长按出现放大镜问题(636)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/p/10829059.html"><span class="iconfont icon-browse_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>9. Android 使用DeviceEventEmitter 向 React Native 传值(598)</a></li><li><a href="https://www.cnblogs.com/xiongxiaolong/p/10828971.html"><span class="iconfont icon-browse_fill" style="color: #888;font-size: 14px;margin-right: 5px;"></span>10. Android 异步回调函数中Toast 的封装(394)</a></li></ul></div></div>
+
+            <!-- 推荐排行 -->
+            <div class="m-list-title"><span>推荐排行</span></div>
+            <div class="m-icon-list" id="sb-topDiggPosts"></div>
+
+        </nav>
+        <button class="close-button" id="close-button">Close Menu</button>
+        <div class="morph-shape" id="morph-shape" data-morph-open="M-7.312,0H15c0,0,66,113.339,66,399.5C81,664.006,15,800,15,800H-7.312V0z;M-7.312,0H100c0,0,0,113.839,0,400c0,264.506,0,400,0,400H-7.312V0z">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 800" preserveAspectRatio="none">
+                <path d="M-7.312,0H0c0,0,0,113.839,0,400c0,264.506,0,400,0,400h-7.312V0z"></path>
+            <desc>Created with Snap</desc><defs></defs></svg>
+        </div>
+    </div><div class="optiscroll-v"><b class="optiscroll-vtrack"></b></div><div class="optiscroll-h"><b class="optiscroll-htrack"></b></div></div>
+    <button class="menu-button" id="open-button">MENU</button>
+    <div class="content-wrap" id="content-wrap"></div><!-- /content-wrap -->
+</div>
+<!-- menu html end -->
+
+<!-- banner html -->
+<div class="main-header" style="height: 40vh; background: url(&quot;https://raw.githubusercontent.com/xlupc/cnblogs-theme/master/img/snow.jpg&quot;) center center / cover no-repeat rgb(34, 34, 34);">
+    <canvas id="notHomeTopCanvas" style=" position: absolute;margin: auto;width: 100%;height: 100%;top: 0;bottom: 0;left: 0;right: 0;" width="1920" height="336"></canvas>
+    <div class="vertical">
+        <div class="main-header-content inner" style="max-width: 100vw;">
+            <h1 class="page-title cssf79d1841e1b313" id="homeTopTitle" style="display: none;">xlupc</h1>
+            <h2 class="page-description" id="hitokoto"></h2>
+            <h3 class="page-author" id="hitokotoAuthor"></h3>
+        <h1 class="sb-title">
+    Vue实现简单Tab标签页组件
+    
+
+
+</h1></div>
+    </div>
+    <a class="scroll-down" href="javascript:void(0);" data-offset="-45" style="display: none;">
+        <span class="hidden">Scroll Down</span>
+        <i class="scroll-down-icon iconfont icon-fanhui"></i>
+    </a>
+</div>
+<!-- banner html end -->
+
+<!-- global var -->
+<script type="text/javascript">window['__document_write_ajax_callbacks__']['3']();</script><script type="text/javascript">window['__document_write_ajax_callbacks__']['1']();</script>
+<!-- global var end -->
+    <div id="profile_block">
+        昵称：
+        <a href="https://home.cnblogs.com/u/xiongxiaolong/">
+            xlupc
+        </a>
+        <br>
+        园龄：
+        <a href="https://home.cnblogs.com/u/xiongxiaolong/" title="入园时间：2018-12-10">
+            1年6个月
+        </a>
+        <br>
+        粉丝：
+        <a href="https://home.cnblogs.com/u/xiongxiaolong/followers/">
+            3
+        </a>
+        <br>
+        关注：
+        <a href="https://home.cnblogs.com/u/xiongxiaolong/followees/">
+            0
+        </a>
+        <div id="p_b_follow">
+<a href="javascript:void(0)" onclick="follow(&#39;1b07322c-eb8d-42c2-62b8-08d65dae0ffa&#39;)">+加关注</a></div>
+        <script type="text/javascript">window['__document_write_ajax_callbacks__']['4']();</script><script>window['__document_write_ajax_callbacks__']['2']();</script>
+    </div>
+</div>
+
+</div>
+
+<div id="sidebar_ad"></div>
+			<div id="blog-calendar" style="display:none"></div><script>loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn">
+<!-- 搜索 -->
+<div id="sidebar_search" class="sidebar-block">
+    
+</div>
+
+<!-- 常用链接 -->
+<div id="sidebar_shortcut" class="sidebar-block">
+    <div class="catListLink">
+<h3 class="catListTitle">
+常用链接
+</h3>
+<ul>
+		<li>
+
+<a href="https://www.cnblogs.com/xiongxiaolong/p/" title="我的博客的随笔列表">我的随笔</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/xiongxiaolong/MyComments.html" title="我的发表过的评论列表">我的评论</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/xiongxiaolong/OtherPosts.html" title="我评论过的随笔列表">我的参与</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/xiongxiaolong/RecentComments.html" title="我的博客的评论列表">最新评论</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/xiongxiaolong/tag/" title="我的博客的标签列表">我的标签</a>
+</li>
+
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div>
+
+
+</div>
+
+<!-- 最新随笔 -->
+
+
+
+<!-- 我的标签 -->
+<div id="sidebar_toptags" class="sidebar-block">
+    <div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+
+        <li>
+            <a href="https://www.cnblogs.com/xiongxiaolong/tag/android/">android</a>(4)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/xiongxiaolong/tag/React/">React</a>(4)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/xiongxiaolong/tag/react-native/">react-native</a>(4)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/xiongxiaolong/tag/js/">js</a>(3)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/xiongxiaolong/tag/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">移动端</a>(3)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/xiongxiaolong/tag/webpack/">webpack</a>(2)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/xiongxiaolong/tag/css/">css</a>(2)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/xiongxiaolong/tag/git/">git</a>(2)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/xiongxiaolong/tag/ios/">ios</a>(2)
+        </li>
+        <li>
+            <a href="https://www.cnblogs.com/xiongxiaolong/tag/touch/">touch</a>(2)
+        </li>
+    <li>
+        <a href="https://www.cnblogs.com/xiongxiaolong/tag/">更多</a>
+    </li>
+
+</ul>
+</div>
+
+
+</div>
+
+<!-- 积分与排名 -->
+<div id="sidebar_scorerank" class="sidebar-block">
+    <div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	
+13612
+	</li>
+	<li class="liRank">
+		排名 -	
+57050
+	</li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+<!-- 随笔分类、随笔档案、文章分类、新闻分类、相册、链接 -->
+<div id="sidebar_categories">
+    
+        <div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+            <h3 class="catListTitle">
+                
+
+随笔分类
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/category/1360773.html" rel="" target="">
+    algorithm(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/category/1369489.html" rel="" target="">
+    css(5)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/category/1468219.html" rel="" target="">
+    java(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/category/1400009.html" rel="" target="">
+    js(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/category/1360774.html" rel="" target="">
+    nodejs(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/category/1360775.html" rel="" target="">
+    others(5)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/category/1361236.html" rel="" target="">
+    react(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/category/1364550.html" rel="" target="">
+    react-native(4)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/category/1383850.html" rel="" target="">
+    vue(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/category/1372689.html" rel="" target="">
+    webpack(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/category/1370992.html" rel="" target="">
+    计算机基础(4)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/category/1391915.html" rel="" target="">
+    移动端(8)
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+        <div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+            <h3 class="catListTitle">
+                
+
+随笔档案
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/archive/2020/06.html" rel="" target="">
+    2020年6月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/archive/2019/09.html" rel="" target="">
+    2019年9月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/archive/2019/05.html" rel="" target="">
+    2019年5月(5)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/archive/2019/04.html" rel="" target="">
+    2019年4月(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/archive/2019/03.html" rel="" target="">
+    2019年3月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/archive/2019/02.html" rel="" target="">
+    2019年2月(5)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/archive/2019/01.html" rel="" target="">
+    2019年1月(7)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xiongxiaolong/archive/2018/12.html" rel="" target="">
+    2018年12月(14)
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+        <div id="sidebar_links1375895" class="catList sidebar-block">
+            <h3 class="catListTitle">
+                
+
+前端
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.jianshu.com/p/ad96e712564c" rel="nofollow noopener noreferrer" target="">
+    Webpack的devtool和source maps
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://segmentfault.com/q/1010000009672497/a-1020000010815177" rel="nofollow noopener noreferrer" target="">
+    基于create-react-app的打包后文件路径问题
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://segmentfault.com/a/1190000015837055" rel="nofollow noopener noreferrer" target="">
+    create-react-app 修改为多入口编译
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.jianshu.com/p/fa19a07b1496" rel="nofollow noopener noreferrer" target="">
+    vue+webpack多个项目共用组件动态打包单个项目
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://array_huang.coding.me/webpack-book/chapter4/webpack-multi-program.html" rel="nofollow noopener noreferrer" target="">
+    No复制粘贴！多项目共用基础设施
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://imweb.io/topic/56ac67fbe39ca21162ae6c78" rel="nofollow noopener noreferrer" target="">
+    setTimeout的那些事
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.jianshu.com/p/7e65608ddc0a" rel="nofollow noopener noreferrer" target="">
+    vue中引入.svg图标，使用iconfont图标库
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/libo0125ok/p/8422617.html" rel="nofollow noopener noreferrer" target="">
+    img标签实现和背景图一样的显示效果——object-fit和object-position
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/starof/p/4512284.html?utm_source=tuicool&amp;utm_medium=referral" rel="nofollow noopener noreferrer" target="">
+    深入理解css中vertical-align属性
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.jianshu.com/p/066f95cde865" rel="nofollow noopener noreferrer" target="">
+    React-Navigation在混合开发中报错undefined is not an object (evaluating 'RNGestureHandlerModule.State')
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://blog.csdn.net/f409031mn/article/details/79522129" rel="nofollow noopener noreferrer" target="">
+    react-native-vector-icons的集成心得
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://blog.csdn.net/xiangzhihong8/article/details/81028053" rel="nofollow noopener noreferrer" target="">
+    React Native与原生交互之跳转及传参
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+        <div id="sidebar_links1395016" class="catList sidebar-block">
+            <h3 class="catListTitle">
+                
+
+生活帮助
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="http://www.pdflibr.com/" rel="nofollow noopener noreferrer" target="">
+    云短信
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+        <div id="sidebar_links1384295" class="catList sidebar-block">
+            <h3 class="catListTitle">
+                
+
+学习网站
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://segmentfault.com/" rel="nofollow noopener noreferrer" target="">
+    思否
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.csdn.net/" rel="nofollow noopener noreferrer" target="">
+    CSDN
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://juejin.im/" rel="nofollow noopener noreferrer" target="">
+    掘金
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://stackoverflow.com/" rel="nofollow noopener noreferrer" target="">
+    stackoverflow
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+        <div id="sidebar_links1397838" class="catList sidebar-block">
+            <h3 class="catListTitle">
+                
+
+资源链接
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://shields.io/#/" rel="nofollow noopener noreferrer" target="">
+    图标
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.jsdelivr.com/" rel="nofollow noopener noreferrer" target="">
+    CDN
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.jinrishici.com/#" rel="nofollow noopener noreferrer" target="">
+    今日诗词
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://developer.umeng.com/docs" rel="nofollow noopener noreferrer" target="">
+    互联网数据服务[友盟]
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.youziku.com/" rel="nofollow noopener noreferrer" target="">
+    有字库
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+
+</div>
+
+<!-- 最新评论 -->
+
+
+
+
+<!-- 阅读排行榜 -->
+<div id="sidebar_topviewedposts" class="sidebar-block">
+    <div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/xiongxiaolong/p/10823047.html">
+                            1. okhttp3 post请求基本使用以及超时重连(3179)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/xiongxiaolong/p/10274325.html">
+                            2. Vue实现简单Tab标签页组件(1732)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/xiongxiaolong/p/10713078.html">
+                            3. react-navigation createBottomTabNavigator 刷新问题(1472)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/xiongxiaolong/p/10321652.html">
+                            4. ios关于fixed布局的解决思路(820)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/xiongxiaolong/p/10370920.html">
+                            5. tree命令查看目录树(803)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/xiongxiaolong/p/10771139.html">
+                            6. React Native 点击两次返回键退出应用(682)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/xiongxiaolong/p/10330271.html">
+                            7. 移动端android touchend事件长按或滑动时不触发(640)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/xiongxiaolong/p/10346782.html">
+                            8. ios 长按出现放大镜问题(636)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/xiongxiaolong/p/10829059.html">
+                            9. Android 使用DeviceEventEmitter 向 React Native 传值(598)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/xiongxiaolong/p/10828971.html">
+                            10. Android 异步回调函数中Toast 的封装(394)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 评论排行榜 -->
+
+
+<!-- 推荐排行榜 -->
+<div id="sidebar_topdiggedposts" class="sidebar-block">
+    
+</div></div>
+                    <script>loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright © 2020 xlupc
+<br><span id="poweredby">Powered by .NET Core on Kubernetes</span>
+
+
+
+	<span id="amazingStatSpan"></span><div style="text-align: center;">I love waking up in the morning and not knowing what's going to happen， or who I'm going to meet， where I'm going to wind up</div><div><span id="blogRunTimeSpan">This blog has running : 554 d 15 h 45 m 19 s</span></div><div id="cnzzInfo" style="text-align: center;">TodayIP: 34 | TodayPV: 42 | YesterdayIP: 33 | YesterdayPV: 40 | Online: 0</div></div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    <div id="page_end_html">
+        <!-- 滚动进度 -->
+<div id="bottomProgressBar"><div id="top-progress-bar" style="position: relative; top: 0px; left: 0px; right: 0px; background-color: orange; height: 2px; width: 0%; transition: width 0.2s ease 0s, opacity 0.6s ease 0s; opacity: 1;"></div></div>
+
+<!-- 音乐播放器 -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.0/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.0/dist/APlayer.min.js"></script>
+<div id="aplayer" class="aplayer" data-id="316722029" data-lrctype="0" data-server="netease" data-type="playlist" data-fixed="true" data-listfolded="true"></div>
+<script src="https://unpkg.com/meting@1.2/dist/Meting.min.js"></script> -->
+
+<!-- cnzz统计 -->
+<div style="display: none;">
+    <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1275888752'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1275888752%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));
+    </script><span id="cnzz_stat_icon_1275888752"><a href="https://www.cnzz.com/stat/website.php?web_id=1275888752" target="_blank">站长统计</a><a href="https://www.cnzz.com/stat/website.php?web_id=1275888752" target="_blank"> |  今日IP[34] | 今日PV[42] | 昨日IP[33] |  昨日PV[40] | </a><a href="https://www.cnzz.com/stat/website.php?web_id=1275888752&amp;method=online" target="_blank">当前在线[0]</a></span><script src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/z_stat.php" type="text/javascript"></script><script src="./Vue实现简单Tab标签页组件 - xlupc - 博客园_files/core.php" charset="utf-8" type="text/javascript"></script>
+</div>
+
+<!-- 右下角菜单 -->
+<div id="rightMenu"><div id="attention" onclick="follow(&#39;1b07322c-eb8d-42c2-62b8-08d65dae0ffa&#39;)" clickflg="false"><span class="rightMenuSpan attentionSpan">关注</span><i class="rightMenuIcon iconfont icon-guanzhu"></i></div><div id="toUpDown" data="down"><span class="rightMenuSpan toUpDownSpan">跳至底部</span><div id="toUpDownI" style="transform: rotate(-180deg); transform-origin: 50% 50%;"><i class="rightMenuIcon iconfont icon-zhiding"></i></div></div></div>
+    </div><script type="text/javascript">
+    /**
+     * 博客全局配置，请仔细配置！！
+     */
+    window.cnblogsConfig = {
+
+        // ---- GitHub文件源配置 ----
+        GhUserName: 'xlupc', // GitHub用户名(不是昵称)，注意大小写
+        GhRepositories: 'cnblogs-theme', // GitHub主题仓库名称
+        GhVersions : 'e3ede70eeb53608e3e27af75789ec7e6ff6c9c13', // GitHub提交版本哈希值，根据版本加载代码
+
+        // ---- 基础信息配置 ----
+        blogUser      : "xlupc", // 博主名称，文章后缀和主页图片上都会使用此名称
+        blogAvatar    : "https://raw.githubusercontent.com/xlupc/cnblogs-theme/master/img/xlupc.jpg", // 用户头像URL
+        blogStartDate : "2018-12-10", // 入园时间，年-月-日，入园时间查看方法：鼠标停留园龄时间上，会显示入园时间
+
+        // ---- 网站配置 ----
+        webpageTitleOnblur        : "Xlupc,miss you~", // 当前页失去焦点，页面title显示文字
+        webpageTitleOnblurTimeOut : 500, // 当前页失去焦点，页面title变化，延时时间，单位毫秒
+        webpageTitleFocus         : "Welcome back!", // 当前页获取焦点，页面title显示文字，显示后延时恢复原title
+        webpageTitleFocusTimeOut  : 1500, // 当前页获取焦点，页面title变化，延时时间，单位毫秒
+        webpageIcon : "https://raw.githubusercontent.com/xlupc/cnblogs-theme/master/img/icons8-beach-480.png", // 网站图标
+
+        // ---- 进度条配置 ----
+        progressBar: {
+            id      : 'top-progress-bar',
+            color   : 'orange',
+            height  : '2px',
+            duration: 0.2
+        },
+
+        // ---- Loading配置 ----
+        loading: {
+            rebound: {
+                tension: 16,
+                friction: 5
+            },
+            spinner: {
+                id: 'spinner',
+                radius: 90,
+                sides: 3,
+                depth: 4,
+                colors: {
+                    background: '#f0f0f0',
+                    stroke: '#272633',
+                    base: null,
+                    child: '#272633'
+                },
+                alwaysForward: true, // When false the spring will reverse normally.
+                restAt: 0.5,         // A number from 0.1 to 0.9 || null for full rotation
+                renderBase: false
+            }
+        },
+
+
+        // ---- 页面动效配置 ----
+        homeTopAnimationRendered: true, // true || false ,是否渲染主页头图动效
+        homeTopAnimation: { // 主页头图动效设置
+            radius: 15,
+            density: 0.2,
+            color: 'rgba(255,255,255, .2)', // 颜色设置，“random” 为随机颜色
+            clearOffset: 0.3
+        },
+
+        essayTopAnimationRendered: true, // true || false ,是否渲染随笔页头图动效
+        essayTopAnimation: { // 随笔页头图动效设置
+            triW : 14,
+            triH : 20,
+            neighbours : ["side", "top", "bottom"],
+            speedTrailAppear : .1,
+            speedTrailDisappear : .1,
+            speedTriOpen : 1,
+            trailMaxLength : 30,
+            trailIntervalCreation : 100,
+            delayBeforeDisappear : 2,
+            colors: [
+                '#96EDA6', '#5BC6A9',
+                '#38668C', '#374D84',
+                '#BED5CB', '#62ADC6',
+                '#8EE5DE', '#304E7B'
+            ]
+        },
+
+        bgAnimationRendered: true, // true || false ,是否渲染背景动效
+        backgroundAnimation : { // 背景动效设置
+            colorSaturation: "60%",
+            colorBrightness: "50%",
+            colorAlpha: 0.5,
+            colorCycleSpeed: 5,
+            verticalPosition: "random",
+            horizontalSpeed: 200,
+            ribbonCount: 3,
+            strokeSize: 0,
+            parallaxAmount: -0.2,
+            animateSections: true
+        },
+
+        // ---- 主页配置 ----
+        homeTopImg    : "https://raw.githubusercontent.com/xlupc/cnblogs-theme/master/img/train.jpg", // 主页图片Url，推荐尺寸>= 1920*1080
+        homeBannerText: "", // 主页头图上的标语，设置此选项会固定显示文字，默认为空，自动获取一句。
+
+        // ---- 随笔页配置 ----
+        essayTopImg: "https://raw.githubusercontent.com/xlupc/cnblogs-theme/master/img/snow.jpg", // 随笔页图片Url
+        essayCodeHighlightingType: 'highlightjs', // 代码主题插件类型：cnblogs || highlightjs || prettify
+        essayCodeHighlighting: 'xcode', // 代码高亮主题，具体主题参考文档
+        essaySuffix:{ // 随笔后缀处配置
+            aboutHtml    : '', // 关于博主，不配置使用默认
+            copyrightHtml: '', // 版权声明，不配置使用默认
+            supportHtml  : ''  // 声援博主，不配置使用默认
+        },
+
+        // ---- 页脚配置 ----
+        // bottomBlogroll: [ // 友情链接，[[链接名,链接]....]
+        //     ["申请坑位", ''],
+        // ],
+        // bottomText: {  // 页脚标语
+        //     icon: "❤️", // 图标
+        //     left : "事实并非理所当然", // 图标左侧文字
+        //     right: "世界总是欲盖弥彰"  // 图标右侧文字
+        // },
+
+        // ---- 控制台输出 ----
+        consoleList: [
+            ['Xlupc CNBlogs', 'https://www.cnblogs.com/xiongxiaolong'],
+            ['Xlupc GitHub', 'https://github.com/xlupc'],
+            ['Xlupc Email', 'xiaolongupc@163.com']
+        ],
+    };
+
+    // start cache
+    $.ajaxSetup({cache: true});
+
+    // load loadingJs
+    $.getScript(getJsDelivrUrl('loading.js'), function () {
+
+        // Loading start
+        pageLoading.initRebound();
+        pageLoading.initSpinner();
+        pageLoading.spinner.init(pageLoading.spring, true);
+
+        $.getScript(getJsDelivrUrl('jquery.mCustomScrollbar.min.js'), function () {
+            $.getScript(getJsDelivrUrl('require.min.js'), function () {
+                $.getScript(getJsDelivrUrl('config.js'), function () {
+                    var staticResource = [
+                        'optiscroll', 'ToProgress', 'rotate',
+                        'snapSvg', 'classie', 'main4', 'tools'];
+                    require(staticResource, function() {
+                        require(['base'], function() {
+                            (new Base).init();
+                        });
+                    });
+                });
+            });
+        });
+    });
+
+    // get file url
+    function getJsDelivrUrl(file, directory) {
+        file = setFileNameMin(file, directory);
+        return 'https://cdn.jsdelivr.net/gh/'+(window.cnblogsConfig.GhUserName)+'/'+(window.cnblogsConfig.GhRepositories)+'@'+(window.cnblogsConfig.GhVersions)+'/' + (file ? file : '');
+    }
+
+    // optimization file name
+    function setFileNameMin(file, directory) {
+        if (typeof file == 'undefined') return '';
+        var suffix  = null,fileArr = file.split('.');
+        if (fileArr.length > 0 && $.inArray(fileArr[(fileArr.length -1)], ['js', 'css']) != -1)
+            {suffix    = fileArr.pop(); directory = suffix;}
+        file.search('.min') == -1 && fileArr.push('min');
+        suffix != null && fileArr.push(suffix);
+        return (typeof directory !== 'undefined' ? (directory + '/' + fileArr.join('.')) : (fileArr.join('.')));
+    }
+</script><script type="text/javascript">getFollowStatus('1b07322c-eb8d-42c2-62b8-08d65dae0ffa');</script>
+
+
+<div id="toTop" style="zoom:0;"></div><canvas id="bgCanvas" width="1920" height="840" style="display: block; position: fixed; margin: 0px; padding: 0px; border: 0px; outline: 0px; left: 0px; top: 0px; width: 100%; height: 100%; z-index: -1;"></canvas><div id="sideToolbar" style="top: 375px; visibility: visible; display: block;" class=""><div class="sideCatalogBg" id="sideCatalog" style="right: 260px;"><div id="sideCatalog-sidebar"><div class="sideCatalog-sidebar-top"></div><div class="sideCatalog-sidebar-bottom"></div></div><div id="sideCatalog-catalog"><ul class="nav" style="width:230px;zoom:1"><li class="h2Offset"><a href="https://www.cnblogs.com/xiongxiaolong/p/10274325.html#autoid-0-0-0" title="0|1Tab 标签页组件">0.1&nbsp;&nbsp;Tab 标签页组件</a></li></ul></div></div><a href="javascript:void(0);" id="sideCatalogBtn" class="sideCatalogBtnDisable"></a></div><div role="dialog" id="baguetteBox-overlay"><div id="baguetteBox-slider"></div><button type="button" id="previous-button" aria-label="Previous" class="baguetteBox-button"><svg width="44" height="60"><polyline points="30 10 10 30 30 50" stroke="rgba(255,255,255,0.5)" stroke-width="4" stroke-linecap="butt" fill="none" stroke-linejoin="round"></polyline></svg></button><button type="button" id="next-button" aria-label="Next" class="baguetteBox-button"><svg width="44" height="60"><polyline points="14 10 34 30 14 50" stroke="rgba(255,255,255,0.5)" stroke-width="4" stroke-linecap="butt" fill="none" stroke-linejoin="round"></polyline></svg></button><button type="button" id="close-button" aria-label="Close" class="baguetteBox-button"><svg width="30" height="30"><g stroke="rgb(160,160,160)" stroke-width="4"><line x1="5" y1="5" x2="25" y2="25"></line><line x1="5" y1="25" x2="25" y2="5"></line></g></svg></button></div></body></html>

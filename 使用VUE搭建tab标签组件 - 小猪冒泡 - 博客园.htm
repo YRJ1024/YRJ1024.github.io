@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://www.cnblogs.com/xiaozhumaopao/p/7852910.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="never">
+    <meta property="og:description" content="Vue2.0 多 Tab切换组件简单封装，满足自己简单的功能，可以直接拿去使用！ 首先上效果图： 功能简单介绍： 1、支持tab切换 2、支持tab定位 3、支持tab自动化 仿React多Tab实现">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园</title>
+    <link id="favicon" rel="shortcut icon" href="https://common.cnblogs.com/favicon.ico?v=20200522" type="image/x-icon">
+    
+    <link rel="stylesheet" href="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/blog-common.min.css">
+    <link id="MainCss" rel="stylesheet" href="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/bundle-coffee.min.css">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/bundle-coffee-mobile.min.css">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/xiaozhumaopao/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/xiaozhumaopao/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/xiaozhumaopao/wlwmanifest.xml">
+    <script async="" src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/analytics.js"></script><script type="text/javascript" src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/encoder.js"></script><script src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/jquery-2.2.0.min.js"></script>
+    <script src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/blog-common.min.js"></script>
+    <script>
+        var currentBlogId = 205266;
+        var currentBlogApp = 'xiaozhumaopao';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+        var skinName = 'coffee';
+    </script>
+    
+    
+    
+<link rel="preload" href="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/f.txt" as="script"><script type="text/javascript" src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/f.txt"></script><script src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/pubads_impl_2020061202.js" async=""></script><link rel="prefetch" href="https://0d0ccc6c12919855194fe8b5b1094140.safeframe.googlesyndication.com/safeframe/1-0-37/html/container.html"><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-37/html/container.html"></head>
+<body>
+    <a name="top"></a>
+    
+    
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a href="https://www.cnblogs.com/xiaozhumaopao/"><img id="blogLogo" src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/xiaozhumaopao/">小猪冒泡</a>
+</h1>
+<h2>
+
+</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="navigator">
+			
+<ul id="navList">
+	<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+	<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/xiaozhumaopao/">
+首页</a>
+</li>
+	<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+	<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/%E5%B0%8F%E7%8C%AA%E5%86%92%E6%B3%A1">
+联系</a></li>
+	<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+	<li>
+<a id="blog_nav_rss" class="menu" href="javascript:void(0)" data-rss="https://www.cnblogs.com/xiaozhumaopao/rss/">
+订阅</a>
+	
+<a id="blog_nav_rss_image" href="https://www.cnblogs.com/xiaozhumaopao/rss/">
+    <img src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/xml.gif" alt="订阅">
+</a></li>
+</ul>
+
+
+
+			<div class="blogStats">
+				
+				<!--done-->
+随笔- 
+325&nbsp;
+文章- 
+1&nbsp;
+评论- 
+11&nbsp;
+
+
+
+				
+			</div><!--end: blogStats -->
+		</div><!--end: navigator 博客导航栏 -->
+		<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			
+<a id="cb_post_title_url" class="postTitle2 vertical-middle" href="https://www.cnblogs.com/xiaozhumaopao/p/7852910.html">
+    <span>使用VUE搭建tab标签组件</span>
+    
+
+
+</a>
+
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			
+<div id="cnblogs_post_body" class="blogpost-body ">
+    <h3 id="vue20-多-tab切换组件简单封装满足自己简单的功能可以直接拿去使用">Vue2.0 多 Tab切换组件简单封装，满足自己简单的功能，可以直接拿去使用！</h3>
+<h3 id="首先上效果图"><a name="t1"></a>首先上效果图：</h3>
+<p><img title="" src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/20170620132431389" alt="示例效果图片"></p>
+<p><strong>功能简单介绍：</strong></p>
+<p>1、支持tab切换</p>
+<p>2、支持tab定位</p>
+<p>3、支持tab自动化</p>
+<p>仿React多Tab实现，总之可以正常使用满足日常需求，</p>
+<p><strong>1、使用方法：</strong></p>
+<p>==index.vue文件==</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">TabItems</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="买入"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="first"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">Content </span><span style="color: #ff0000;">:isContTab </span><span style="color: #0000ff;">= "0"</span> <span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="自动再平衡"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="second"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">Content </span><span style="color: #ff0000;">:isContTab </span><span style="color: #0000ff;">= "1"</span> <span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="一键卖出"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="three"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">Content </span><span style="color: #ff0000;">:isContTab </span><span style="color: #0000ff;">= "2"</span> <span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">TabItems</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>PS：<code>TabItems</code>是我的TabSwitch组件，tab页面标题就是 div 中的<code>name</code>值，俩面是内容，也可以是子组件。</p>
+<p>接下来展示<code>TabItems</code>组件</p>
+<p><strong>2、组件</strong></p>
+<p><strong>index.less文件</strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #800000;">body,html </span>{<span style="color: #ff0000;">margin</span>:<span style="color: #0000ff;"> 0</span>;}<span style="color: #800000;">
+
+* </span>{<span style="color: #ff0000;">
+    opacity</span>:<span style="color: #0000ff;"> 1</span>;<span style="color: #ff0000;">
+    -webkit-backface-visibility</span>:<span style="color: #0000ff;"> hidden</span>;
+}<span style="color: #800000;">
+
+.tabItems </span>{<span style="color: #ff0000;">
+    .Tab_tittle_wrap {
+        position</span>:<span style="color: #0000ff;"> absolute</span>;<span style="color: #ff0000;">
+        width</span>:<span style="color: #0000ff;"> 100%</span>;<span style="color: #ff0000;">
+        top</span>:<span style="color: #0000ff;"> 0</span>;<span style="color: #ff0000;">
+        z-index</span>:<span style="color: #0000ff;"> 2</span>;<span style="color: #ff0000;">
+        background</span>:<span style="color: #0000ff;"> @ffffff</span>;<span style="color: #ff0000;">
+        display</span>:<span style="color: #0000ff;"> -webkit-box</span>;<span style="color: #ff0000;">
+        height</span>:<span style="color: #0000ff;"> 80px</span>;<span style="color: #ff0000;">
+        line-height</span>:<span style="color: #0000ff;"> 80px</span>;<span style="color: #ff0000;">
+        text-align</span>:<span style="color: #0000ff;"> center</span>;<span style="color: #ff0000;">
+        color</span>:<span style="color: #0000ff;"> @222222</span>;<span style="color: #ff0000;">
+        border-bottom</span>:<span style="color: #0000ff;"> 1px solid rgba(46, 177, 255, 0.08)</span>;<span style="color: #ff0000;">
+        box-shadow</span>:<span style="color: #0000ff;"> 0px 0px 25px 6px rgba(46, 177, 255, 0.21)</span>;<span style="color: #ff0000;">
+        span {
+            display</span>:<span style="color: #0000ff;"> block</span>;<span style="color: #ff0000;">
+            text-align</span>:<span style="color: #0000ff;"> center</span>;<span style="color: #ff0000;">
+            width</span>:<span style="color: #0000ff;"> 26%</span>;<span style="color: #ff0000;">
+            margin</span>:<span style="color: #0000ff;"> 0 24px</span>;<span style="color: #ff0000;">
+            font-size</span>:<span style="color: #0000ff;"> 26px</span>;<span style="color: #ff0000;">
+            position</span>:<span style="color: #0000ff;"> relative</span>;<span style="color: #ff0000;">
+            i {
+                display</span>:<span style="color: #0000ff;"> inline-block</span>;<span style="color: #ff0000;">
+                position</span>:<span style="color: #0000ff;"> absolute</span>;<span style="color: #ff0000;">
+                width</span>:<span style="color: #0000ff;"> 1px</span>;<span style="color: #ff0000;">
+                height</span>:<span style="color: #0000ff;"> 50px</span>;<span style="color: #ff0000;">
+                top</span>:<span style="color: #0000ff;"> 15px</span>;<span style="color: #ff0000;">
+                right</span>:<span style="color: #0000ff;"> -24px</span>;<span style="color: #ff0000;">
+                background</span>:<span style="color: #0000ff;"> @dddddd</span>;
+            }<span style="color: #800000;">
+            &amp;:last-child </span>{<span style="color: #ff0000;">
+                i {
+                    display</span>:<span style="color: #0000ff;"> none</span>;
+                }<span style="color: #800000;">
+            }
+        }
+        .router-link-active </span>{<span style="color: #ff0000;">
+            color</span>:<span style="color: #0000ff;"> #8097f9</span>;<span style="color: #ff0000;">
+            border-bottom</span>:<span style="color: #0000ff;"> 1px solid #8097f9</span>;
+        }<span style="color: #800000;">
+    }
+    .Tab_item_wrap </span>{<span style="color: #ff0000;">
+        position</span>:<span style="color: #0000ff;"> absolute</span>;<span style="color: #ff0000;">
+        top</span>:<span style="color: #0000ff;"> 82px</span>;<span style="color: #ff0000;">
+        width</span>:<span style="color: #0000ff;"> 100%</span>;<span style="color: #ff0000;">
+        z-index</span>:<span style="color: #0000ff;"> 0</span>;<span style="color: #ff0000;">
+        background</span>:<span style="color: #0000ff;"> @ffffff</span>;<span style="color: #ff0000;">
+        bottom</span>:<span style="color: #0000ff;"> 0</span>;<span style="color: #ff0000;">
+        overflow-x</span>:<span style="color: #0000ff;"> hidden</span>;<span style="color: #ff0000;">
+        -webkit-overflow-scrolling</span>:<span style="color: #0000ff;"> touch</span>;
+    }<span style="color: #800000;">
+    .showAnminous </span>{<span style="color: #ff0000;">
+        opacity</span>:<span style="color: #0000ff;"> 1</span>;<span style="color: #ff0000;">
+        -webkit-backface-visibility</span>:<span style="color: #0000ff;"> hidden</span>;<span style="color: #ff0000;">
+        -webkit-animation-name</span>:<span style="color: #0000ff;"> "rightMove"</span>;
+        <span style="color: #008000;">/*</span><span style="color: #008000;">动画名称，需要跟@keyframes定义的名称一致</span><span style="color: #008000;">*/</span><span style="color: #ff0000;">
+        -webkit-animation-duration</span>:<span style="color: #0000ff;"> .3s</span>;
+        <span style="color: #008000;">/*</span><span style="color: #008000;">动画持续的时间长</span><span style="color: #008000;">*/</span><span style="color: #ff0000;">
+        -webkit-animation-iteration-count</span>:<span style="color: #0000ff;"> 1</span>;
+        <span style="color: #008000;">/*</span><span style="color: #008000;">动画循环播放的次数为1 infinite为无限次</span><span style="color: #008000;">*/</span>
+    }<span style="color: #800000;">
+}
+
+@-webkit-keyframes rightMove </span>{<span style="color: #ff0000;">
+    0% {
+        -webkit-transform</span>:<span style="color: #0000ff;"> translate(110%, 0)</span>;
+    }<span style="color: #800000;">
+    100% </span>{<span style="color: #ff0000;">
+        -webkit-transform</span>:<span style="color: #0000ff;"> translate(0, 0)</span>;
+    }<span style="color: #800000;">
+}
+
+@-ms-keyframes rightMove </span>{<span style="color: #ff0000;">
+    0% {
+        -ms-transform</span>:<span style="color: #0000ff;"> translate(110%, 0)</span>;
+    }<span style="color: #800000;">
+    100% </span>{<span style="color: #ff0000;">
+        -ms-transform</span>:<span style="color: #0000ff;"> translate(0, 0)</span>;
+    }<span style="color: #800000;">
+}
+
+@keyframes rightMove </span>{<span style="color: #ff0000;">
+    0% {
+        -webkit-transform</span>:<span style="color: #0000ff;"> translate(110%, 0)</span>;<span style="color: #ff0000;">
+        -ms-transform</span>:<span style="color: #0000ff;"> translate(110%, 0)</span>;<span style="color: #ff0000;">
+        transform</span>:<span style="color: #0000ff;"> translate(110%, 0)</span>;
+    }<span style="color: #800000;">
+    100% </span>{<span style="color: #ff0000;">
+        -webkit-transform</span>:<span style="color: #0000ff;"> translate(0, 0)</span>;<span style="color: #ff0000;">
+        -ms-transform</span>:<span style="color: #0000ff;"> translate(0, 0)</span>;<span style="color: #ff0000;">
+        transform</span>:<span style="color: #0000ff;"> translate(0, 0)</span>;
+    }<span style="color: #800000;">
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><strong>TabItems.vue</strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">template</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="tabItems"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="Tab_tittle_wrap"</span><span style="color: #ff0000;"> @click</span><span style="color: #0000ff;">="tabswitch"</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">span </span><span style="color: #ff0000;">v-for</span><span style="color: #0000ff;">="(v,i) in tabTitle"</span><span style="color: #ff0000;"> :style</span><span style="color: #0000ff;">="{width:(100/tabTitle.length-7.5)+'%'}"</span><span style="color: #ff0000;"> :class</span><span style="color: #0000ff;">="isShowTab==i?'router-link-active':''"</span><span style="color: #0000ff;">&gt;</span>{{v}}<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">i</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">span</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="Tab_item_wrap"</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">slot</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">slot</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">template</span><span style="color: #0000ff;">&gt;</span>
+
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">style </span><span style="color: #ff0000;">lang</span><span style="color: #0000ff;">="less"</span><span style="color: #0000ff;">&gt;</span><span style="background-color: #f5f5f5; color: #800000;">
+    @import "./less/index";
+</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">style</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span><span style="background-color: #f5f5f5; color: #000000;">
+    export </span><span style="background-color: #f5f5f5; color: #0000ff;">default</span><span style="background-color: #f5f5f5; color: #000000;"> {
+        data() {
+            </span><span style="background-color: #f5f5f5; color: #0000ff;">return</span><span style="background-color: #f5f5f5; color: #000000;"> {
+                tabTitle: [],
+                isShowTab: </span><span style="background-color: #f5f5f5; color: #000000;">0</span><span style="background-color: #f5f5f5; color: #000000;">,
+            }
+        },
+        created: </span><span style="background-color: #f5f5f5; color: #0000ff;">function</span><span style="background-color: #f5f5f5; color: #000000;">() {
+            let is </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> sessionStorage.getItem(</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">isTabShow</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">);
+            </span><span style="background-color: #f5f5f5; color: #0000ff;">if</span><span style="background-color: #f5f5f5; color: #000000;">(is) {
+                </span><span style="background-color: #f5f5f5; color: #0000ff;">this</span><span style="background-color: #f5f5f5; color: #000000;">.isShowTab </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> is;
+            } </span><span style="background-color: #f5f5f5; color: #0000ff;">else</span><span style="background-color: #f5f5f5; color: #000000;"> {
+                let URL </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> libUtils.GetURLParamObj();
+                </span><span style="background-color: #f5f5f5; color: #0000ff;">this</span><span style="background-color: #f5f5f5; color: #000000;">.isShowTab </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> URL.isShowTab </span><span style="background-color: #f5f5f5; color: #000000;">?</span><span style="background-color: #f5f5f5; color: #000000;"> URL.isShowTab : </span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">0</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">;
+            }
+
+            setTimeout(</span><span style="background-color: #f5f5f5; color: #0000ff;">function</span><span style="background-color: #f5f5f5; color: #000000;">() {
+                </span><span style="background-color: #f5f5f5; color: #0000ff;">this</span><span style="background-color: #f5f5f5; color: #000000;">.tabswitch(document.querySelector(</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">.Tab_tittle_wrap</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">).children[</span><span style="background-color: #f5f5f5; color: #0000ff;">this</span><span style="background-color: #f5f5f5; color: #000000;">.isShowTab].click());
+            }.bind(</span><span style="background-color: #f5f5f5; color: #0000ff;">this</span><span style="background-color: #f5f5f5; color: #000000;">), </span><span style="background-color: #f5f5f5; color: #000000;">0</span><span style="background-color: #f5f5f5; color: #000000;">);
+        },
+        mounted() {
+            let slot </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">this</span><span style="background-color: #f5f5f5; color: #000000;">.$slots.</span><span style="background-color: #f5f5f5; color: #0000ff;">default</span><span style="background-color: #f5f5f5; color: #000000;">;
+            </span><span style="background-color: #f5f5f5; color: #0000ff;">for</span><span style="background-color: #f5f5f5; color: #000000;">(let i </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">0</span><span style="background-color: #f5f5f5; color: #000000;">; i </span><span style="background-color: #f5f5f5; color: #000000;">&lt;</span><span style="background-color: #f5f5f5; color: #000000;"> slot.length; i</span><span style="background-color: #f5f5f5; color: #000000;">++</span><span style="background-color: #f5f5f5; color: #000000;">) {
+                </span><span style="background-color: #f5f5f5; color: #0000ff;">if</span><span style="background-color: #f5f5f5; color: #000000;">(slot[i].tag </span><span style="background-color: #f5f5f5; color: #000000;">==</span> <span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">div</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">) {
+                    </span><span style="background-color: #f5f5f5; color: #0000ff;">this</span><span style="background-color: #f5f5f5; color: #000000;">.tabTitle.push(slot[i].data.attrs.name);
+                    </span><span style="background-color: #f5f5f5; color: #0000ff;">if</span><span style="background-color: #f5f5f5; color: #000000;">(slot[i].elm) {
+                        slot[i].elm.className </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">hide</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">;
+                        </span><span style="background-color: #f5f5f5; color: #0000ff;">if</span><span style="background-color: #f5f5f5; color: #000000;">(</span><span style="background-color: #f5f5f5; color: #0000ff;">this</span><span style="background-color: #f5f5f5; color: #000000;">.isShowTab </span><span style="background-color: #f5f5f5; color: #000000;">==</span><span style="background-color: #f5f5f5; color: #000000;"> i) {
+                            slot[i].elm.className </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">""</span><span style="background-color: #f5f5f5; color: #000000;">;
+                        }
+                    };
+                }
+            }
+        },
+        methods: {
+            tabswitch() {
+                </span><span style="background-color: #f5f5f5; color: #0000ff;">if</span><span style="background-color: #f5f5f5; color: #000000;">(</span><span style="background-color: #f5f5f5; color: #000000;">!</span><span style="background-color: #f5f5f5; color: #000000;">event) </span><span style="background-color: #f5f5f5; color: #0000ff;">return</span><span style="background-color: #f5f5f5; color: #000000;">;
+                let target </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> event.target;
+
+                </span><span style="background-color: #f5f5f5; color: #0000ff;">if</span><span style="background-color: #f5f5f5; color: #000000;">(target.nodeName.toLowerCase() </span><span style="background-color: #f5f5f5; color: #000000;">!==</span> <span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">span</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">) {
+                    </span><span style="background-color: #f5f5f5; color: #0000ff;">return</span><span style="background-color: #f5f5f5; color: #000000;">;
+                }
+
+                let len </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> target.parentNode.children;
+                </span><span style="background-color: #f5f5f5; color: #0000ff;">for</span><span style="background-color: #f5f5f5; color: #000000;">(let i </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">0</span><span style="background-color: #f5f5f5; color: #000000;">; i </span><span style="background-color: #f5f5f5; color: #000000;">&lt;</span><span style="background-color: #f5f5f5; color: #000000;"> len.length; i</span><span style="background-color: #f5f5f5; color: #000000;">++</span><span style="background-color: #f5f5f5; color: #000000;">) {
+                    len[i].index </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> i;
+                    len[i].removeAttribute(</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">class</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">);
+                }
+                target.setAttribute(</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">class</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">, </span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">router-link-active</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">);
+                </span><span style="background-color: #f5f5f5; color: #0000ff;">this</span><span style="background-color: #f5f5f5; color: #000000;">.isShowTab </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> target.index;
+
+                </span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;">tabItems</span>
+<span style="background-color: #f5f5f5; color: #000000;">                let child </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">this</span><span style="background-color: #f5f5f5; color: #000000;">.$el.children[</span><span style="background-color: #f5f5f5; color: #000000;">1</span><span style="background-color: #f5f5f5; color: #000000;">].children;
+                </span><span style="background-color: #f5f5f5; color: #0000ff;">for</span><span style="background-color: #f5f5f5; color: #000000;">(let k </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">0</span><span style="background-color: #f5f5f5; color: #000000;">; k </span><span style="background-color: #f5f5f5; color: #000000;">&lt;</span><span style="background-color: #f5f5f5; color: #000000;"> child.length; k</span><span style="background-color: #f5f5f5; color: #000000;">++</span><span style="background-color: #f5f5f5; color: #000000;">) {
+                    child[k].className </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">hide</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">;
+                    </span><span style="background-color: #f5f5f5; color: #0000ff;">if</span><span style="background-color: #f5f5f5; color: #000000;">(k </span><span style="background-color: #f5f5f5; color: #000000;">==</span><span style="background-color: #f5f5f5; color: #000000;"> target.index) {
+                        child[k].className </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">showAnminous</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">;
+                    }
+                }
+                </span><span style="background-color: #f5f5f5; color: #0000ff;">try</span><span style="background-color: #f5f5f5; color: #000000;"> {
+                    sessionStorage.setItem(</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">isTabShow</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">, target.index);
+                } </span><span style="background-color: #f5f5f5; color: #0000ff;">catch</span><span style="background-color: #f5f5f5; color: #000000;">(err) {
+                    console.log(err);
+                }
+            }
+        }
+    }
+</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>PS：</p>
+<p>created、mounted这两个方法不需要过多介绍，Vue生命周期</p>
+<p><strong>1、created方法介绍。</strong></p>
+<p>获取浏览器链接地址：libUtils.GetURLParamObj();获取浏览器链接地址的，如果不知道怎么获取，<a href="http://blog.csdn.net/qq_16559905/article/details/51125218" target="_blank">在这里</a></p>
+<p>created这个方法主要是用来定位tab具体显示哪个页面的</p>
+<p><strong>2、mounted方法介绍</strong></p>
+<p>主要是用于隐藏内容容器的</p>
+<p><strong>3、tabswitch方法</strong></p>
+<p>用来切换组件容器的显示的页面！</p>
+<p>&nbsp;</p>
+<p>转载 原文地址：<a href="http://blog.csdn.net/qq_16559905/article/details/73496926" target="_blank">http://blog.csdn.net/qq_16559905/article/details/73496926</a></p>
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+
+
+    <div id="blog_post_info">
+<div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(7852910,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+        <a id="green_channel_follow" onclick="follow(&#39;ff6a47ec-5e6e-e411-b908-9dcfd8948a71&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/xiaozhumaopao/" target="_blank"><img src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/20141117222801.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/xiaozhumaopao/">小猪冒泡</a><br>
+            <a href="https://home.cnblogs.com/u/xiaozhumaopao/followees/">关注 - 1</a><br>
+            <a href="https://home.cnblogs.com/u/xiaozhumaopao/followers/">粉丝 - 10</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;ff6a47ec-5e6e-e411-b908-9dcfd8948a71&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(7852910,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(7852910,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+    <div class="clear"></div>
+    <div id="post_next_prev">
+
+    <a href="https://www.cnblogs.com/xiaozhumaopao/p/7852816.html" class="p_n_p_prefix">« </a> 上一篇：    <a href="https://www.cnblogs.com/xiaozhumaopao/p/7852816.html" title="发布于 2017-11-17 18:08">vue 插件tab选项卡(转载)</a>
+    <br>
+    <a href="https://www.cnblogs.com/xiaozhumaopao/p/7920809.html" class="p_n_p_prefix">» </a> 下一篇：    <a href="https://www.cnblogs.com/xiaozhumaopao/p/7920809.html" title="发布于 2017-11-29 15:36">有关vuex的问题</a>
+
+</div>
+</div>
+		</div>
+		<div class="postDesc">posted @ 
+<span id="post-date">2017-11-17 18:30</span>&nbsp;
+<a href="https://www.cnblogs.com/xiaozhumaopao/">小猪冒泡</a>&nbsp;
+阅读(<span id="post_view_count">3354</span>)&nbsp;
+评论(<span id="post_comment_count">0</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=7852910" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(7852910);return false;">收藏</a></div>
+	</div>
+	
+	
+</div><!--end: topics 文章、评论容器-->
+<script src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/highlight.min.js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 205266, cb_blogApp = 'xiaozhumaopao', cb_blogUserGuid = 'ff6a47ec-5e6e-e411-b908-9dcfd8948a71';
+    var cb_entryId = 7852910, cb_entryCreatedDate = '2017-11-17 18:30', cb_postType = 1; 
+    loadViewCount(cb_entryId);
+    loadSideColumnAd();
+</script><a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<script>
+    var commentManager = new blogCommentManager();
+    commentManager.renderComments(0);
+</script>
+
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/xiaozhumaopao/p/7852910.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/xiaozhumaopao/p/7852910.html#top">返回顶部</a></div>
+    <div id="comment_form_container" style="visibility: visible;"><div class="login_tips">
+    注册用户登录后才能发表评论，请 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a>
+     或 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，
+    <a href="https://www.cnblogs.com/">访问</a> 网站首页。
+</div></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"><a href="https://www.wenjuan.com/s/3uIjeq0/" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-博客园问卷调查&#39;)">【推荐】了解你才能更懂你，博客园首发问卷调查，助力社区新升级</a><br><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-ucancode&#39;)">【推荐】超50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://developer.aliyun.com/ask/272857?utm_content=g_1000104135" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-阿里云开发者社区&#39;)">【推荐】Java实战200例（附源码）-助你提升实战能力</a><br></div>
+    <div id="opt_under_post"></div>
+    <script async="async" src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/gpt.js"></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+    <script>
+        var mobileVisit = screen.width < 500;
+        googletag.cmd.push(function () {
+            googletag.defineSlot("/1090369/C1", [300, 250], "div-gpt-ad-1546353474406-0").addService(googletag.pubads());
+            if (!mobileVisit) {
+                googletag.defineSlot("/1090369/C2", [468, 60], "div-gpt-ad-1539008685004-0").addService(googletag.pubads());
+            }
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+    <div id="cnblogs_c1" class="c_ad_block">
+        <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;" data-google-query-id="CKqCm8vWhuoCFc2CvQodzbQMTQ"><div id="google_ads_iframe_/1090369/C1_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C1_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C1_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="1" data-load-complete="true" src="./使用VUE搭建tab标签组件 - 小猪冒泡 - 博客园_files/saved_resource.html"></iframe></div></div>
+    </div>
+    <div id="under_post_news"><div class="recomm-block"><b>相关博文：</b><br>·  <a title="vue+element-ui制作tab切换（切换vue组件，踩坑总结）" href="https://www.cnblogs.com/wangweizhang/p/10251758.html" target="_blank" onclick="clickRecomItmem(10251758)">vue+element-ui制作tab切换（切换vue组件，踩坑总结）</a><br>·  <a title="Android Tab标签的使用基础" href="https://www.cnblogs.com/mengdd/archive/2013/05/08/3065156.html" target="_blank" onclick="clickRecomItmem(3065156)">Android Tab标签的使用基础</a><br>·  <a title="react实现的tab切换组件" href="https://www.cnblogs.com/tianheila/p/5170330.html" target="_blank" onclick="clickRecomItmem(5170330)">react实现的tab切换组件</a><br>·  <a title="vue组件通信的几种方式" href="https://www.cnblogs.com/yszblog/p/10135969.html" target="_blank" onclick="clickRecomItmem(10135969)">vue组件通信的几种方式</a><br>·  <a title="Vue.js组件之间的调用" href="https://www.cnblogs.com/zzwlong/p/6855733.html" target="_blank" onclick="clickRecomItmem(6855733)">Vue.js组件之间的调用</a><br>»  <a target="_blank" href="https://recomm.cnblogs.com/blogpost/7852910">更多推荐...</a></div></div>
+    <div id="cnblogs_c2" class="c_ad_block" style="display: none;">
+        <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;" data-google-query-id="CLqGmsvWhuoCFc2CvQodzbQMTQ"><div id="google_ads_iframe_/1090369/C2_0__container__" style="border: 0pt none; width: 468px; height: 60px;"></div></div>
+    </div>
+    <div id="under_post_kb">
+<div class="itnews c_ad_block">
+    <b>最新 IT 新闻</b>:
+    <br>
+ ·              <a href="https://news.cnblogs.com/n/665277/" target="_blank">字节1000万挖走大V，B站为何左右为难？</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/665276/" target="_blank">未授权Switch变正品， 拼多多百亿补贴真靠谱吗？</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/665275/" target="_blank">巫师财经出B站记</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/665274/" target="_blank">卖力“演出”，买单者寥寥，李国庆却不能停</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/665273/" target="_blank">魅族没有老朋友，也没有新故事</a>
+            <br>
+    » <a href="https://news.cnblogs.com/" title="IT 新闻" target="_blank">更多新闻...</a>
+</div></div>
+    <div id="HistoryToday" class="c_ad_block">
+<b>历史上的今天：</b>
+<br>
+
+2017-11-17    <a href="https://www.cnblogs.com/xiaozhumaopao/p/7852816.html">vue 插件tab选项卡(转载)</a>
+    <br>
+</div>
+    <script type="text/javascript">
+        fixPostBody();
+        deliverBigBanner();
+setTimeout(function() { incrementViewCount(cb_entryId); }, 50);        deliverAdT2();
+        deliverAdC1();
+        deliverAdC2();
+        loadNewsAndKb();
+        loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+        loadOptUnderPost();
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div></div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<div id="sidebar_news" class="newsItem"><!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	
+<div id="blog-news">
+    
+    <div id="profile_block">
+        昵称：
+        <a href="https://home.cnblogs.com/u/xiaozhumaopao/">
+            小猪冒泡
+        </a>
+        <br>
+        园龄：
+        <a href="https://home.cnblogs.com/u/xiaozhumaopao/" title="入园时间：2014-11-17">
+            5年6个月
+        </a>
+        <br>
+        粉丝：
+        <a href="https://home.cnblogs.com/u/xiaozhumaopao/followers/">
+            10
+        </a>
+        <br>
+        关注：
+        <a href="https://home.cnblogs.com/u/xiaozhumaopao/followees/">
+            1
+        </a>
+        <div id="p_b_follow">
+<a href="javascript:void(0)" onclick="follow(&#39;ff6a47ec-5e6e-e411-b908-9dcfd8948a71&#39;)">+加关注</a></div>
+        <script>getFollowStatus('ff6a47ec-5e6e-e411-b908-9dcfd8948a71');</script>
+    </div>
+</div>
+</div>
+
+</div>
+
+<div id="sidebar_ad"></div>
+			<div id="calendar"><div id="blog-calendar" style="">
+
+<table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar" border="0">
+    <tbody>
+        <tr>
+            <td colspan="7">
+                <table class="CalTitle" cellspacing="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td class="CalNextPrev">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2020/05/16&#39;); return false;">&lt;</a>
+                            </td>
+                            <td align="center">2020年6月</td>
+                            <td align="right" class="CalNextPrev">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2020/07/16&#39;); return false;">&gt;</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+                    <th class="CalDayHeader" align="center" abbr="日" scope="col">日</th>
+                    <th class="CalDayHeader" align="center" abbr="一" scope="col">一</th>
+                    <th class="CalDayHeader" align="center" abbr="二" scope="col">二</th>
+                    <th class="CalDayHeader" align="center" abbr="三" scope="col">三</th>
+                    <th class="CalDayHeader" align="center" abbr="四" scope="col">四</th>
+                    <th class="CalDayHeader" align="center" abbr="五" scope="col">五</th>
+                    <th class="CalDayHeader" align="center" abbr="六" scope="col">六</th>
+        </tr>
+            <tr>
+                            <td class="CalOtherMonthDay" align="center">31</td>
+                        <td class="" align="center">
+                            1
+                        </td>
+                        <td class="" align="center">
+                            2
+                        </td>
+                        <td class="" align="center">
+                            3
+                        </td>
+                        <td class="" align="center">
+                            4
+                        </td>
+                        <td class="" align="center">
+                            5
+                        </td>
+                    <td class="CalWeekendDay" align="center">
+                        6
+                    </td>
+            </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            7
+                        </td>
+                            <td class="" align="center">
+                                8
+                            </td>
+                            <td class="" align="center">
+                                9
+                            </td>
+                            <td class="" align="center">
+                                10
+                            </td>
+                            <td class="" align="center">
+                                11
+                            </td>
+                            <td class="" align="center">
+                                12
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            13
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            14
+                        </td>
+                            <td class="" align="center">
+                                15
+                            </td>
+                            <td class="CalTodayDay" align="center">
+                                16
+                            </td>
+                            <td class="" align="center">
+                                17
+                            </td>
+                            <td class="" align="center">
+                                18
+                            </td>
+                            <td class="" align="center">
+                                19
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            20
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            21
+                        </td>
+                            <td class="" align="center">
+                                22
+                            </td>
+                            <td class="" align="center">
+                                23
+                            </td>
+                            <td class="" align="center">
+                                24
+                            </td>
+                            <td class="" align="center">
+                                25
+                            </td>
+                            <td class="" align="center">
+                                26
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            27
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            28
+                        </td>
+                            <td class="" align="center">
+                                29
+                            </td>
+                            <td class="" align="center">
+                                30
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                1
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                2
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                3
+                            </td>
+                        <td class="CalOtherMonthDay" align="center">
+                            4
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalOtherMonthDay" align="center">
+                            5
+                        </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                6
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                7
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                8
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                9
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                10
+                            </td>
+                        <td class="CalOtherMonthDay" align="center">
+                            11
+                        </td>
+                </tr>
+    </tbody>
+</table></div><script>loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn">
+<!-- 搜索 -->
+<div id="sidebar_search" class="sidebar-block">
+    <div id="sidebar_search" class="mySearch">
+        <h3 class="catListTitle">搜索</h3>
+        <div id="sidebar_search_box">
+            <div id="widget_my_zzk" class="div_my_zzk">
+                <input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk">
+            </div>
+            <div id="widget_my_google" class="div_my_zzk">
+                <input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 常用链接 -->
+<div id="sidebar_shortcut" class="sidebar-block">
+    <div class="catListLink">
+<h3 class="catListTitle">
+常用链接
+</h3>
+<ul>
+		<li>
+
+<a href="https://www.cnblogs.com/xiaozhumaopao/p/" title="我的博客的随笔列表">我的随笔</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/xiaozhumaopao/MyComments.html" title="我的发表过的评论列表">我的评论</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/xiaozhumaopao/OtherPosts.html" title="我评论过的随笔列表">我的参与</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/xiaozhumaopao/RecentComments.html" title="我的博客的评论列表">最新评论</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/xiaozhumaopao/tag/" title="我的博客的标签列表">我的标签</a>
+</li>
+
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="https://www.cnblogs.com/xiaozhumaopao/p/7852910.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div>
+
+
+</div>
+
+<!-- 最新随笔 -->
+<div id="sidebar_recentposts" class="sidebar-block">
+    <div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/xiaozhumaopao/p/12961076.html">1.websocket的建立</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/xiaozhumaopao/p/12919947.html">2.网站设置二级域名的nginx配置</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/xiaozhumaopao/p/12842197.html">3.ios 最新系统bug与解决——弹出键盘再收起时，原虚拟键盘位点击事件无效</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/xiaozhumaopao/p/12831389.html">4.发布订阅事件+异步函数说明</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/xiaozhumaopao/p/12813214.html">5.网站安全与攻击</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/xiaozhumaopao/p/12730586.html">6.webpack补充点---查漏补缺</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/xiaozhumaopao/p/12726640.html">7.上传文件代码</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/xiaozhumaopao/p/12726625.html">8.react相关知识总结3</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/xiaozhumaopao/p/12726003.html">9.react相关知识总结2</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/xiaozhumaopao/p/12716344.html">10.正则表达式相关知识点</a>
+
+                </li>
+			
+
+</ul>
+</div>
+
+
+</div>
+
+
+<!-- 我的标签 -->
+<div id="sidebar_toptags" class="sidebar-block">
+    
+</div>
+
+<!-- 积分与排名 -->
+
+
+<!-- 随笔分类、随笔档案、文章分类、新闻分类、相册、链接 -->
+<div id="sidebar_categories">
+    
+<div class="catListPostArchive">
+<h3 class="catListTitle">
+
+随笔档案
+
+
+</h3>
+
+
+<ul>
+
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2020/05.html" rel="" target="">
+    2020年5月(5)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2020/04.html" rel="" target="">
+    2020年4月(14)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2020/03.html" rel="" target="">
+    2020年3月(6)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2020/02.html" rel="" target="">
+    2020年2月(3)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2020/01.html" rel="" target="">
+    2020年1月(5)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2019/12.html" rel="" target="">
+    2019年12月(1)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2019/11.html" rel="" target="">
+    2019年11月(5)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2019/10.html" rel="" target="">
+    2019年10月(19)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2019/09.html" rel="" target="">
+    2019年9月(5)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2019/08.html" rel="" target="">
+    2019年8月(2)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2019/07.html" rel="" target="">
+    2019年7月(12)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2019/06.html" rel="" target="">
+    2019年6月(20)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2019/05.html" rel="" target="">
+    2019年5月(6)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2019/04.html" rel="" target="">
+    2019年4月(12)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2019/03.html" rel="" target="">
+    2019年3月(17)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2019/02.html" rel="" target="">
+    2019年2月(10)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2019/01.html" rel="" target="">
+    2019年1月(12)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2018/12.html" rel="" target="">
+    2018年12月(7)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2018/11.html" rel="" target="">
+    2018年11月(4)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2018/10.html" rel="" target="">
+    2018年10月(1)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2018/09.html" rel="" target="">
+    2018年9月(2)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2018/08.html" rel="" target="">
+    2018年8月(2)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2018/07.html" rel="" target="">
+    2018年7月(1)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2018/04.html" rel="" target="">
+    2018年4月(3)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2018/02.html" rel="" target="">
+    2018年2月(2)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2018/01.html" rel="" target="">
+    2018年1月(6)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2017/12.html" rel="" target="">
+    2017年12月(4)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2017/11.html" rel="" target="">
+    2017年11月(6)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2017/10.html" rel="" target="">
+    2017年10月(2)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2017/09.html" rel="" target="">
+    2017年9月(3)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2017/08.html" rel="" target="">
+    2017年8月(4)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2017/07.html" rel="" target="">
+    2017年7月(7)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2017/06.html" rel="" target="">
+    2017年6月(12)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2017/05.html" rel="" target="">
+    2017年5月(5)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2017/04.html" rel="" target="">
+    2017年4月(2)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2017/03.html" rel="" target="">
+    2017年3月(8)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2017/02.html" rel="" target="">
+    2017年2月(2)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2017/01.html" rel="" target="">
+    2017年1月(14)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2016/12.html" rel="" target="">
+    2016年12月(4)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2016/11.html" rel="" target="">
+    2016年11月(5)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2016/10.html" rel="" target="">
+    2016年10月(6)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2016/09.html" rel="" target="">
+    2016年9月(12)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2016/08.html" rel="" target="">
+    2016年8月(19)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2016/05.html" rel="" target="">
+    2016年5月(1)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2015/10.html" rel="" target="">
+    2015年10月(3)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2015/09.html" rel="" target="">
+    2015年9月(7)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2015/08.html" rel="" target="">
+    2015年8月(7)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2015/07.html" rel="" target="">
+    2015年7月(1)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2015/05.html" rel="" target="">
+    2015年5月(1)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2015/02.html" rel="" target="">
+    2015年2月(1)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2014/12.html" rel="" target="">
+    2014年12月(2)
+</a>
+ 
+</li>
+<li>
+<a href="https://www.cnblogs.com/xiaozhumaopao/archive/2014/11.html" rel="" target="">
+    2014年11月(5)
+</a>
+ 
+</li>
+
+</ul>
+
+
+</div>
+
+
+</div>
+
+<!-- 最新评论 -->
+<div id="sidebar_recentcomments" class="sidebar-block">
+    <div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div class="RecentCommentBlock">
+        <ul>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/xiaozhumaopao/p/11066005.html">1. Re:js 异步执行顺序</a></li>
+                    <li class="recent_comment_body">@moope 天啦噜 为啥我用的node和你执行的顺序也不一样。。。...</li>
+                    <li class="recent_comment_author">--小猪冒泡</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/xiaozhumaopao/p/11066005.html">2. Re:js 异步执行顺序</a></li>
+                    <li class="recent_comment_body">“很多人以为await会一直等待之后的表达式执行完之后才会继续执行后面的代码，实际上await是一个让出线程的标志。await后面的函数会先执行一遍，然后就会跳出整个async函数来执行后面js栈（后...</li>
+                    <li class="recent_comment_author">--moope</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/xiaozhumaopao/p/11066005.html">3. Re:js 异步执行顺序</a></li>
+                    <li class="recent_comment_body"><p>我是用的js文件，通过node执行的<br>
+</p>
+</li>
+                    <li class="recent_comment_author">--moope</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/xiaozhumaopao/p/11066005.html">4. Re:js 异步执行顺序</a></li>
+                    <li class="recent_comment_body">@moope 以上是我在浏览器中执行的呀...</li>
+                    <li class="recent_comment_author">--小猪冒泡</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/xiaozhumaopao/p/11066005.html">5. Re:js 异步执行顺序</a></li>
+                    <li class="recent_comment_body"><p>题目一我这边执行的时候是先打印两个promise，再出现的async1 end</p>
+</li>
+                    <li class="recent_comment_author">--moope</li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+
+
+<!-- 阅读排行榜 -->
+<div id="sidebar_topviewedposts" class="sidebar-block">
+    <div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/xiaozhumaopao/p/5803188.html">
+                            1. 在div中设置文字与内部div垂直居中(148948)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/xiaozhumaopao/p/5751246.html">
+                            2. 使得&lt;li&gt;在一行显示，去除浮动的方法(11529)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/xiaozhumaopao/p/5756609.html">
+                            3. div下的img标签中图片的大小设定(10807)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/xiaozhumaopao/p/4121372.html">
+                            4. 递归算法与迭代算法的区别(10294)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/xiaozhumaopao/p/8033537.html">
+                            5. vue中在页面渲染完之后获取元素（否则动态渲染的元素获取不到）(9443)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 评论排行榜 -->
+<div id="sidebar_topcommentedposts" class="sidebar-block">
+    <div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/xiaozhumaopao/p/11066005.html">
+                            1. js 异步执行顺序(5)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/xiaozhumaopao/p/5803188.html">
+                            2. 在div中设置文字与内部div垂直居中(2)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/xiaozhumaopao/p/6236731.html">
+                            3. JSON.stringify的使用方法(1)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/xiaozhumaopao/p/5916989.html">
+                            4. 根据浏览器的宽度动态设置元素的宽度，使其显示固定的元素个数（点击按钮，元素左右移动）(1)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/xiaozhumaopao/p/12155208.html">
+                            5. svg基础知识梳理--动画篇(1)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 推荐排行榜 -->
+<div id="sidebar_topdiggedposts" class="sidebar-block">
+    <div id="topdigg_posts_wrap">
+    <div class="catListView">
+        <h3 class="catListTitle">推荐排行榜</h3>
+        <div id="TopDiggPostsBlock">
+            <ul style="word-break: break-all">
+                        <li>
+                            <a href="https://www.cnblogs.com/xiaozhumaopao/p/4121372.html">
+                                1. 递归算法与迭代算法的区别(5)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/xiaozhumaopao/p/7093144.html">
+                                2. jQuery版本的jsonp(3)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/xiaozhumaopao/p/5803188.html">
+                                3. 在div中设置文字与内部div垂直居中(2)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/xiaozhumaopao/p/8866411.html">
+                                4. vuex简介（转载）(1)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/xiaozhumaopao/p/8033537.html">
+                                5. vue中在页面渲染完之后获取元素（否则动态渲染的元素获取不到）(1)
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div></div>
+                    <script>loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright © 2020 小猪冒泡
+<br><span id="poweredby">Powered by .NET Core on Kubernetes</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    
+
+
+</body></html>
